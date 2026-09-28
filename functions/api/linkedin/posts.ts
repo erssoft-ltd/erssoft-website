@@ -52,6 +52,16 @@ export const onRequestGet = async (
   url.searchParams.set("start", "0");
   url.searchParams.set("sortBy", "CREATED");
 
+  // Temporary diagnostic: never log the actual token.
+  console.log("LinkedIn configuration check", {
+    tokenPresent: Boolean(LINKEDIN_ACCESS_TOKEN),
+    tokenLength: LINKEDIN_ACCESS_TOKEN?.length ?? 0,
+    tokenHasWhitespace:
+      LINKEDIN_ACCESS_TOKEN !== LINKEDIN_ACCESS_TOKEN?.trim(),
+    companyId: LINKEDIN_COMPANY_ID,
+    apiVersion: LINKEDIN_API_VERSION,
+  });
+
   try {
     const response = await fetch(url.toString(), {
       method: "GET",
@@ -63,44 +73,43 @@ export const onRequestGet = async (
       },
     });
 
-    
     if (!response.ok) {
-    const requestId =
+      const requestId =
         response.headers.get("x-li-uuid") ??
         response.headers.get("x-restli-id") ??
         "not-provided";
 
-    let errorCode = "unknown";
+      let errorCode = "unknown";
 
-    try {
+      try {
         const details: any = await response.json();
 
         errorCode = String(
-        details.serviceErrorCode ??
-        details.code ??
-        "unknown"
+          details.serviceErrorCode ??
+          details.code ??
+          "unknown"
         );
 
         console.error("LinkedIn API diagnostic", {
-        status: response.status,
-        errorCode,
-        requestId,
+          status: response.status,
+          errorCode,
+          requestId,
         });
-    } catch {
+      } catch {
         console.error("LinkedIn API diagnostic", {
-        status: response.status,
-        requestId,
+          status: response.status,
+          requestId,
         });
-    }
+      }
 
-    return json(
+      return json(
         {
-        error: "LinkedIn API request failed.",
-        status: response.status,
-        errorCode,
+          error: "LinkedIn API request failed.",
+          status: response.status,
+          errorCode,
         },
         502
-    );
+      );
     }
 
     const data: any = await response.json();
