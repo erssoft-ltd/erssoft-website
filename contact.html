@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact ErsSoft Limited | ERP & JD Edwards Consulting</title>
+  <meta name="description" content="Contact ErsSoft Limited for ERP, JD Edwards, manufacturing systems and data analytics consulting. Based in London, serving UK and international clients." />
+  <link rel="canonical" href="https://erssoft.co.uk/contact.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/contact.css">
+</head>
+
+<body>
+
+<div id="site-header"></div>
+<div class="page-content">
+
+<section class="section">
+  <h1>Contact ErsSoft Limited</h1>
+  <p style="color:#c7cbe6; max-width:700px;">
+    Get in touch to discuss your ERP, JD Edwards, manufacturing systems or data analytics requirements.
+    We typically respond within 1 business day. All enquiries are handled by senior ERP consultants.
+  </p>
+
+  <div class="form-container">
+      <form id="contactForm">
+      <label>Your Name</label>
+      <input type="text" name="name" required>
+
+      <label>Email Address</label>
+      <input type="email" name="email" required>
+
+      <label>Company</label>
+      <input type="text" name="company">
+
+      <label>Project Type</label>
+      <select name="project">
+        <option>ERP</option>
+        <option>JD Edwards</option>
+        <option>Manufacturing Systems</option>
+        <option>Data & BI</option>
+        <option>Other</option>
+      </select>
+
+      <label>Your Message</label>
+      <textarea name="message" rows="5"></textarea>
+
+      <button type="submit">Request a Free ERP Consultation</button>
+    </form>
+  </div>
+</section>
+
+</div>
+<div id="site-footer"></div>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const payload = {
+    name: form.name.value,
+    email: form.email.value,
+    company: form.company.value,
+    project: form.project.value,
+    message: form.message.value
+  };
+
+  const res = await fetch("https://erssoft-zeptomail-worker.kilicersin.workers.dev", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (res.ok) {
+    window.location.href = "thankyou.html";
+  } else {
+    alert("Message could not be sent. Please try again.");
+  }
+});
+</script>
+
+
+<script src="/js/components.js" defer></script>
+</body>
+</html>
