@@ -39,3 +39,101 @@
 .linkedin-card video.linkedin-card__image {
   background: #000;
 }
+
+/* ==========================================
+   LINKEDIN - COMPACT POST CARDS
+   ========================================== */
+
+/* Three-column layout */
+.linkedin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Card boundaries */
+.linkedin-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Media container */
+.linkedin-card__gallery {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Image and video */
+.linkedin-card__image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 210px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #f1f5f9;
+}
+
+/* Video */
+.linkedin-card video.linkedin-card__image {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  background: #000;
+}
+
+/* Post content */
+.linkedin-card__body {
+  min-width: 0;
+  width: 100%;
+  flex: 1;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Limit long post text */
+.linkedin-card__text {
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  white-space: pre-line;
+  max-height: 290px;
+  overflow-y: auto;
+}
+
+/* Keep LinkedIn link at bottom */
+.linkedin-card__link {
+  margin-top: auto;
+}
+
+/* Gallery controls */
+.linkedin-card__gallery-controls {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .linkedin-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .linkedin-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .linkedin-card__image,
+  .linkedin-card video.linkedin-card__image {
+    height: 190px;
+  }
+}
