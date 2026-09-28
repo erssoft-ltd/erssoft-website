@@ -1,0 +1,55 @@
+.section {
+  padding: 120px 64px 80px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+
+
+.page-content h1 {
+  margin-bottom: 16px;
+}
+
+
+
+.page-content h2 {
+  margin-top: 64px;
+  margin-bottom: 16px;
+}
+
+
+
+.page-content p {
+  color: #c7cbe6;
+  line-height: 1.7;
+}
+
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+
+
+.card {
+  background: #12183a;
+  padding: 32px;
+  border-radius: 16px;
+}
+
+@media (max-width: 900px){
+
+  .section {
+    padding: 80px 32px;
+  }
+}
+
+/* Spacing only: original content and styling retained. */
+.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}
+.page-content .card,.page-content .form-container,.page-content .thankyou-box{padding-top:24px;padding-bottom:24px}
+@media(max-width:900px){.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}}
+
