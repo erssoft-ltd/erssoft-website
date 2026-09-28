@@ -6,7 +6,7 @@
 (() => {
   "use strict";
 
-  const API_URL = "/api/linkedin";
+  const API_URL = "/api/linkedin/posts";
   const PAGE_SIZE = 3;
 
   const grid = document.getElementById("linkedin-posts");
