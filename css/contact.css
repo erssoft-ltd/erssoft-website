@@ -41,3 +41,12 @@
 .page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}
 .page-content .card,.page-content .form-container,.page-content .thankyou-box{padding-top:24px;padding-bottom:24px}
 @media(max-width:900px){.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}}
+
+/* Match Services body typography without altering the contact form behaviour. */
+.page-content .form-container label,
+.page-content .form-container input,
+.page-content .form-container select,
+.page-content .form-container textarea,
+.page-content .form-container button {
+  font-size: 16px;
+}

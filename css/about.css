@@ -7,7 +7,6 @@
 
 
 .page-content h1 {
-  font-size: 44px;
   margin-bottom: 16px;
 }
 
@@ -53,3 +52,4 @@
 .page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}
 .page-content .card,.page-content .form-container,.page-content .thankyou-box{padding-top:24px;padding-bottom:24px}
 @media(max-width:900px){.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}}
+
