@@ -86,6 +86,7 @@ function selectImage(data: any): string | null {
     data?.url,
     data?.downloadUrl?.url,
     data?.downloadUrl?.downloadUrl,
+    data?.image?.downloadUrl,
   ];
 
   for (const candidate of candidates) {
@@ -206,7 +207,7 @@ async function resolveMedia(
 
   // Single media
   const media = content.media;
-  const urn = mediaId(media);
+  const urn = mediaId(media) ?? mediaId(media?.image) ?? mediaId(media?.video);
 
   if (!urn) return result;
 
