@@ -1,0 +1,22 @@
+.site-footer {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 12px 64px;
+  background: #080c18;
+  color: #9aa0c8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+.site-footer a { color: #9aa0c8; }
+@media (max-width: 900px) {
+  .site-footer { padding: 24px 32px; }
+}
+
+
+/* Legal links only — existing footer details remain unchanged. */
+.site-footer .legal-links { margin-top: 12px; }
+.site-footer .legal-links a { color: #c7cbe6; text-decoration: none; }
+.site-footer .legal-links a:hover { color: #ffffff; }

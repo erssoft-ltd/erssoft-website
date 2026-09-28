@@ -1,0 +1,63 @@
+.section {
+      padding: 40px 64px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+
+
+    .thankyou-box {
+      background: #12183a;
+      padding: 30px 60px;
+      border-radius: 16px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+
+
+    .page-content h1 {
+      font-size: 42px;
+      margin-bottom: 16px;
+    }
+
+
+
+    .page-content p {
+      color: #c7cbe6;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+
+
+    .cta {
+      margin-top: 40px;
+    }
+
+
+
+    .cta a {
+      display: inline-block;
+      background: #4f6cff;
+      color: white;
+      padding: 16px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-right: 16px;
+    }
+
+
+
+    .cta a.secondary {
+      background: transparent;
+      border: 1px solid #4f6cff;
+      color: #4f6cff;
+    }
+
+/* Spacing only: original content and styling retained. */
+.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}
+.page-content .card,.page-content .form-container,.page-content .thankyou-box{padding-top:24px;padding-bottom:24px}
+@media(max-width:900px){.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}}

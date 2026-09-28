@@ -1,0 +1,52 @@
+.section {
+      padding: 100px 64px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+
+
+    .form-container {
+      background: #12183a;
+      padding: 60px;
+      border-radius: 16px;
+      max-width: 600px;
+    }
+
+
+
+    .page-content input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 12px;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+
+
+    .page-content button {
+      background: #4f6cff;
+      color: white;
+      padding: 16px 28px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+/* Spacing only: original content and styling retained. */
+.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}
+.page-content .card,.page-content .form-container,.page-content .thankyou-box{padding-top:24px;padding-bottom:24px}
+@media(max-width:900px){.page-content .hero,.page-content .section{padding-top:24px;padding-bottom:24px}}
+
+/* Match Services body typography without altering the contact form behaviour. */
+.page-content .form-container label,
+.page-content .form-container input,
+.page-content .form-container select,
+.page-content .form-container textarea,
+.page-content .form-container button {
+  font-size: 16px;
+}
