@@ -63,14 +63,44 @@ export const onRequestGet = async (
       },
     });
 
+    
     if (!response.ok) {
-      return json(
+    const requestId =
+        response.headers.get("x-li-uuid") ??
+        response.headers.get("x-restli-id") ??
+        "not-provided";
+
+    let errorCode = "unknown";
+
+    try {
+        const details: any = await response.json();
+
+        errorCode = String(
+        details.serviceErrorCode ??
+        details.code ??
+        "unknown"
+        );
+
+        console.error("LinkedIn API diagnostic", {
+        status: response.status,
+        errorCode,
+        requestId,
+        });
+    } catch {
+        console.error("LinkedIn API diagnostic", {
+        status: response.status,
+        requestId,
+        });
+    }
+
+    return json(
         {
-          error: "LinkedIn API request failed.",
-          status: response.status,
+        error: "LinkedIn API request failed.",
+        status: response.status,
+        errorCode,
         },
         502
-      );
+    );
     }
 
     const data: any = await response.json();
