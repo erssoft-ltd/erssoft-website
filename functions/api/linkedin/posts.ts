@@ -90,6 +90,15 @@ export const onRequestGet = async (
           "unknown"
         );
 
+        // LinkedIn error details.
+        // Do not log tokens or Authorization headers.
+        console.error("LinkedIn error details", {
+          status: response.status,
+          serviceErrorCode: details.serviceErrorCode,
+          code: details.code,
+          message: details.message,
+        });
+
         console.error("LinkedIn API diagnostic", {
           status: response.status,
           errorCode,
@@ -98,7 +107,9 @@ export const onRequestGet = async (
       } catch {
         console.error("LinkedIn API diagnostic", {
           status: response.status,
+          errorCode,
           requestId,
+          message: "Unable to parse LinkedIn error response.",
         });
       }
 
@@ -113,13 +124,6 @@ export const onRequestGet = async (
     }
 
     const data: any = await response.json();
-
-    console.error("LinkedIn error details", {
-  status: response.status,
-  serviceErrorCode: details.serviceErrorCode,
-  code: details.code,
-  message: details.message,
-});
 
     const posts = (data.elements ?? [])
       .filter((post: any) => {
