@@ -12,24 +12,18 @@
   const grid = document.getElementById("linkedin-posts");
   const status = document.getElementById("linkedin-status");
   const pagination = document.getElementById("linkedin-pagination");
-
   const previous = document.getElementById("linkedin-prev");
   const next = document.getElementById("linkedin-next");
   const counter = document.getElementById("linkedin-page-counter");
 
-  if (!grid || !status || !pagination || !previous || !next || !counter) {
-    return;
-  }
-
-  let posts = [];
-  let currentPage = 0;
+  if (!grid || !status || !pagination ||
+      !previous || !next || !counter) return;
 
   const companyUrl =
     "https://www.linkedin.com/company/77574975/";
 
-  /* ==========================================
-     DATE FORMAT
-     ========================================== */
+  let posts = [];
+  let currentPage = 0;
 
   function formatDate(value) {
     if (!value) return "";
@@ -49,33 +43,18 @@
     });
   }
 
-  /* ==========================================
-     LINKEDIN TEXT FORMAT
-     ========================================== */
+  function formatLinkedInText(value) {
+    if (typeof value !== "string") return "";
 
-  
-function formatLinkedInText(value) {
-  if (typeof value !== "string") return "";
-
-  return value
-    // LinkedIn hashtag wrapper
-    .replace(/\{hashtag\\?\|([^}]+)\}/gi, "$1")
-
-    // Remaining escaped hashtag separators
-    .replace(/\\+#\|/g, "#")
-    .replace(/#\|/g, "#")
-    .replace(/\\+#/g, "#")
-
-    // Normalise line breaks
-    .replace(/\r\n/g, "\n")
-    .replace(/\n{3,}/g, "\n\n")
-
-    .trim();
-}
-
-  /* ==========================================
-     SAFE URL
-     ========================================== */
+    return value
+      .replace(/\{hashtag\\?\|([^}]+)\}/gi, "$1")
+      .replace(/\\+#\|/g, "#")
+      .replace(/#\|/g, "#")
+      .replace(/\\+#/g, "#")
+      .replace(/\r\n/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  }
 
   function safeUrl(value) {
     if (typeof value !== "string") return null;
@@ -83,20 +62,14 @@ function formatLinkedInText(value) {
     try {
       const url = new URL(value, window.location.origin);
 
-      if (!["https:", "http:"].includes(url.protocol)) {
-        return null;
-      }
-
-      return url.href;
-
+      return url.protocol === "https:" ||
+             url.protocol === "http:"
+        ? url.href
+        : null;
     } catch {
       return null;
     }
   }
-
-  /* ==========================================
-     NORMALISE POST
-     ========================================== */
 
   function normalisePost(post) {
     const commentary = post.commentary;
@@ -109,196 +82,195 @@ function formatLinkedInText(value) {
           post.content ??
           "";
 
-    const image =
-      post.imageUrl ??
-      post.image ??
-      post.media?.url ??
-      post.media?.imageUrl ??
-      null;
+    const images = Array.isArray(post.images)
+      ? post.images.map(safeUrl).filter(Boolean)
+      : [];
 
-    const video =
-      post.videoUrl ??
-      post.video?.url ??
-      post.media?.videoUrl ??
-      null;
+    const imageUrl = safeUrl(
+      post.imageUrl ?? post.image
+    );
 
-    const url =
-      post.permalink ??
-      post.url ??
-      null;
+    if (imageUrl && !images.includes(imageUrl)) {
+      images.unshift(imageUrl);
+    }
 
     return {
       text: formatLinkedInText(rawText),
-
-      image,
-      video,
-      url,
-
       date: formatDate(
+        post.publishedAt ??
         post.createdAt ??
-        post.created_at ??
-        post.date ??
-        post.publishedAt
-      )
+        post.date
+      ),
+      url: safeUrl(
+        post.url ?? post.permalink ?? post.linkedinUrl
+      ) ?? companyUrl,
+      images,
+      videoUrl: safeUrl(post.videoUrl),
+      mediaType: post.mediaType ?? "none"
     };
   }
 
-  /* ==========================================
-     CREATE MEDIA
-     ========================================== */
+  function createImage(url) {
+    const image = document.createElement("img");
+
+    image.className = "linkedin-card__image";
+    image.src = url;
+    image.alt = "ERSSOFT LinkedIn post image";
+    image.loading = "lazy";
+    image.decoding = "async";
+
+    return image;
+  }
+
+  function createGallery(images) {
+    const gallery = document.createElement("div");
+    gallery.className = "linkedin-card__gallery";
+
+    let index = 0;
+
+    const image = createImage(images[0]);
+    gallery.appendChild(image);
+
+    if (images.length > 1) {
+      const controls = document.createElement("div");
+      controls.className = "linkedin-card__gallery-controls";
+
+      const prev = document.createElement("button");
+      prev.type = "button";
+      prev.textContent = "←";
+      prev.setAttribute("aria-label", "Previous image");
+
+      const count = document.createElement("span");
+
+      const next = document.createElement("button");
+      next.type = "button";
+      next.textContent = "→";
+      next.setAttribute("aria-label", "Next image");
+
+      function update() {
+        image.src = images[index];
+        count.textContent = `${index + 1} / ${images.length}`;
+        prev.disabled = index === 0;
+        next.disabled = index === images.length - 1;
+      }
+
+      prev.addEventListener("click", () => {
+        if (index > 0) {
+          index--;
+          update();
+        }
+      });
+
+      next.addEventListener("click", () => {
+        if (index < images.length - 1) {
+          index++;
+          update();
+        }
+      });
+
+      controls.append(prev, count, next);
+      gallery.appendChild(controls);
+      update();
+    }
+
+    return gallery;
+  }
 
   function createMedia(post) {
-    const videoUrl = safeUrl(post.video);
-    const imageUrl = safeUrl(post.image);
-
-    // Video has priority
-    if (videoUrl) {
+    if (post.videoUrl) {
       const video = document.createElement("video");
 
       video.className = "linkedin-card__image";
-      video.src = videoUrl;
-
+      video.src = post.videoUrl;
       video.controls = true;
       video.preload = "metadata";
       video.playsInline = true;
 
-      if (imageUrl) {
-        video.poster = imageUrl;
+      if (post.images.length) {
+        video.poster = post.images[0];
       }
 
       return video;
     }
 
-    // Image
-    if (imageUrl) {
-      const image = document.createElement("img");
-
-      image.className = "linkedin-card__image";
-      image.src = imageUrl;
-      image.alt = "ERSSOFT LinkedIn post";
-
-      image.loading = "lazy";
-      image.decoding = "async";
-
-      return image;
+    if (post.images.length) {
+      return createGallery(post.images);
     }
 
     return null;
   }
 
-  /* ==========================================
-     CREATE POST CARD
-     ========================================== */
-
   function createCard(post) {
     const article = document.createElement("article");
-
     article.className = "linkedin-card";
 
-    // Media
     const media = createMedia(post);
 
     if (media) {
       article.appendChild(media);
     }
 
-    // Body
     const body = document.createElement("div");
-
     body.className = "linkedin-card__body";
 
-    // Date
     if (post.date) {
       const date = document.createElement("span");
-
       date.className = "linkedin-card__date";
       date.textContent = post.date;
-
       body.appendChild(date);
     }
 
-    // Text
     const content = document.createElement("p");
-
     content.className = "linkedin-card__text";
     content.textContent = post.text;
-
     body.appendChild(content);
 
-    // LinkedIn link
     const link = document.createElement("a");
-
     link.className = "linkedin-card__link";
-
-    link.href = safeUrl(post.url) ?? companyUrl;
-
+    link.href = post.url;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-
     link.textContent = "View on LinkedIn ↗";
 
     body.appendChild(link);
-
     article.appendChild(body);
 
     return article;
   }
 
-  /* ==========================================
-     RENDER POSTS
-     ========================================== */
-
   function renderPosts() {
     grid.replaceChildren();
 
     const totalPages = Math.ceil(posts.length / PAGE_SIZE);
-
     const start = currentPage * PAGE_SIZE;
 
-    const visible = posts.slice(
-      start,
-      start + PAGE_SIZE
-    );
-
-    visible.forEach(post => {
+    posts.slice(start, start + PAGE_SIZE).forEach(post => {
       grid.appendChild(createCard(post));
     });
 
     grid.hidden = false;
-
     pagination.hidden = totalPages <= 1;
 
     counter.textContent =
       `${currentPage + 1} / ${totalPages}`;
 
     previous.disabled = currentPage === 0;
-
     next.disabled = currentPage >= totalPages - 1;
   }
-
-  /* ==========================================
-     LOAD LINKEDIN POSTS
-     ========================================== */
 
   async function loadPosts() {
     try {
       const response = await fetch(API_URL, {
-        headers: {
-          Accept: "application/json"
-        }
+        headers: { Accept: "application/json" }
       });
 
       if (!response.ok) {
-        throw new Error(
-          `LinkedIn API: ${response.status}`
-        );
+        throw new Error(`LinkedIn API: ${response.status}`);
       }
 
       const data = await response.json();
 
-      if (data.error) {
-        throw new Error(data.error);
-      }
+      if (data.error) throw new Error(data.error);
 
       const items = Array.isArray(data)
         ? data
@@ -313,33 +285,23 @@ function formatLinkedInText(value) {
       if (!posts.length) {
         status.textContent =
           "No LinkedIn updates available at the moment.";
-
         return;
       }
 
       status.hidden = true;
-
       renderPosts();
 
     } catch (error) {
-      console.error(
-        "LinkedIn loading error:",
-        error
-      );
+      console.error("LinkedIn loading error:", error);
 
       status.textContent =
         "LinkedIn updates are temporarily unavailable.";
     }
   }
 
-  /* ==========================================
-     PAGINATION
-     ========================================== */
-
   previous.addEventListener("click", () => {
     if (currentPage > 0) {
       currentPage--;
-
       renderPosts();
     }
   });
@@ -347,15 +309,9 @@ function formatLinkedInText(value) {
   next.addEventListener("click", () => {
     if ((currentPage + 1) * PAGE_SIZE < posts.length) {
       currentPage++;
-
       renderPosts();
     }
   });
 
-  /* ==========================================
-     INITIALISE
-     ========================================== */
-
   loadPosts();
-
 })();
