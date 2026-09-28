@@ -82,10 +82,8 @@ function validUrl(value: unknown): string | null {
 function selectImage(data: any): string | null {
   const candidates = [
     data?.downloadUrl,
+    data?.downloadUrlExpiresAt && data?.downloadUrl,
     data?.imageUrl,
-    data?.url,
-    data?.downloadUrl?.url,
-    data?.downloadUrl?.downloadUrl,
   ];
 
   for (const candidate of candidates) {
@@ -106,11 +104,7 @@ async function resolveImage(
       env
     );
 
-    const imageUrl = selectImage(data);
-    if (!imageUrl) {
-      console.error("LinkedIn image response has no usable URL", { urn, fields: Object.keys(data ?? {}) });
-    }
-    return imageUrl;
+    return selectImage(data);
   } catch (error) {
     console.error("LinkedIn image resolution failed", urn, error);
     return null;
@@ -136,7 +130,6 @@ async function resolveVideo(
 
     const videoUrl =
       validUrl(data?.downloadUrl) ??
-      validUrl(data?.downloadUrl?.url) ??
       validUrl(data?.videoUrl) ??
       validUrl(streams[0]?.url) ??
       validUrl(data?.streamingUrl) ??
@@ -144,7 +137,6 @@ async function resolveVideo(
 
     const thumbnailUrl =
       validUrl(data?.thumbnailUrl) ??
-      validUrl(data?.thumbnail?.downloadUrl) ??
       validUrl(data?.thumbnail?.url) ??
       null;
 
@@ -322,9 +314,6 @@ export const onRequestGet = async (
               : null,
 
             ...media,
-            mediaResolved: media.mediaType === "none" || media.mediaType === "other"
-              ? null
-              : Boolean(media.imageUrl || media.videoUrl || media.images.length),
           };
         })
       );
