@@ -1,174 +1,51 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>LinkedIn Updates | ErsSoft Limited</title>
-
-  <!-- Theme & Icons -->
   <meta name="theme-color" content="#0b1020">
-
-  <link rel="icon" type="image/png" sizes="32x32"
-        href="/assets/favicon-32x32.png">
-
-  <link rel="icon" type="image/png" sizes="16x16"
-        href="/assets/favicon-16x16.png">
-
-  <link rel="apple-touch-icon" sizes="180x180"
-        href="/assets/apple-touch-icon.png">
-
-  <!-- SEO -->
-  <meta name="description"
-        content="Explore the latest LinkedIn updates, industry insights and company news from ErsSoft Limited.">
-
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta name="description" content="Explore the latest LinkedIn updates, industry insights and company news from ErsSoft Limited.">
   <meta name="robots" content="index, follow">
-
-  <link rel="canonical"
-        href="https://www.erssoft.co.uk/linkedin.html">
-
-  <!-- Open Graph -->
-  <meta property="og:title"
-        content="LinkedIn Updates | ErsSoft Limited">
-
-  <meta property="og:description"
-        content="Company updates and technology insights from ErsSoft Limited.">
-
+  <link rel="canonical" href="https://www.erssoft.co.uk/linkedin.html">
+  <meta property="og:title" content="LinkedIn Updates | ErsSoft Limited">
+  <meta property="og:description" content="Company updates and technology insights from ErsSoft Limited.">
   <meta property="og:type" content="website">
-
-  <meta property="og:url"
-        content="https://www.erssoft.co.uk/linkedin.html">
-
-  <meta property="og:image"
-        content="https://www.erssoft.co.uk/assets/logo.png">
-
-  <!-- Shared CSS -->
+  <meta property="og:url" content="https://www.erssoft.co.uk/linkedin.html">
+  <meta property="og:image" content="https://www.erssoft.co.uk/assets/logo.png">
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/footer.css">
-
-  <!-- LinkedIn CSS -->
   <link rel="stylesheet" href="/css/linkedin.css">
-
 </head>
-
 <body>
-
-  <!-- Shared Header -->
   <div id="site-header"></div>
-
   <main class="linkedin-page">
-
-    <!-- Hero -->
-    <section class="linkedin-hero">
-
-      <div class="linkedin-hero__inner">
-
-        <span class="linkedin-eyebrow">
-          COMPANY UPDATES
-        </span>
-
-        <h1>Our LinkedIn Updates</h1>
-
-        <p>
-          Discover our latest company news,
-          technology insights and industry updates.
-        </p>
-
-        <a
-          href="https://www.linkedin.com/company/77574975/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="linkedin-follow"
-        >
-          Follow ERSSOFT on LinkedIn ↗
-        </a>
-
+    <section class="linkedin-intro" aria-labelledby="linkedin-title">
+      <div class="linkedin-intro__copy">
+        <h1 id="linkedin-title">LinkedIn Updates</h1>
+        <p>Company news, technology insights and industry updates from ErsSoft Limited.</p>
       </div>
-
+      <a href="https://www.linkedin.com/company/77574975/" target="_blank" rel="noopener noreferrer" class="linkedin-follow">Follow us on LinkedIn ↗</a>
     </section>
-
-    <!-- Posts -->
-    <section class="linkedin-section"
-             aria-labelledby="linkedin-posts-title">
-
-      <div class="linkedin-container">
-
-        <div class="linkedin-section-header">
-
-          <div>
-            <span class="linkedin-eyebrow">
-              STAY CONNECTED
-            </span>
-
-            <h2 id="linkedin-posts-title">
-              Latest Posts
-            </h2>
-          </div>
-
-          <span class="linkedin-section-label">
-            ERSSOFT LIMITED
-          </span>
-
-        </div>
-
-        <div
-          id="linkedin-status"
-          class="linkedin-status"
-          role="status"
-          aria-live="polite"
-        >
-          Loading LinkedIn updates...
-        </div>
-
-        <div
-          id="linkedin-posts"
-          class="linkedin-grid"
-          aria-live="polite"
-          hidden
-        ></div>
-
-        <div
-          id="linkedin-pagination"
-          class="linkedin-pagination"
-          hidden
-        >
-
-          <button
-            id="linkedin-prev"
-            type="button"
-            aria-label="Previous posts"
-          >
-            &#8592;
-          </button>
-
-          <span id="linkedin-page-counter"></span>
-
-          <button
-            id="linkedin-next"
-            type="button"
-            aria-label="Next posts"
-          >
-            &#8594;
-          </button>
-
-        </div>
-
+    <section class="linkedin-section" aria-labelledby="linkedin-posts-title">
+      <div class="linkedin-section-header">
+        <h2 id="linkedin-posts-title">Latest Posts</h2>
       </div>
-
+      <div id="linkedin-status" class="linkedin-status" role="status" aria-live="polite">Loading LinkedIn updates...</div>
+      <div id="linkedin-posts" class="linkedin-grid" aria-live="polite" hidden></div>
+      <div id="linkedin-pagination" class="linkedin-pagination" hidden>
+        <button id="linkedin-prev" type="button" aria-label="Previous posts">&#8592;</button>
+        <span id="linkedin-page-counter" aria-live="polite"></span>
+        <button id="linkedin-next" type="button" aria-label="Next posts">&#8594;</button>
+      </div>
     </section>
-
   </main>
-
-  <!-- Shared Footer -->
   <div id="site-footer"></div>
-
-  <!-- Shared Components -->
   <script src="/js/components.js" defer></script>
-
-  <!-- LinkedIn -->
   <script src="/js/linkedin.js" defer></script>
-
 </body>
 </html>
