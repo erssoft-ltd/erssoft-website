@@ -1,13 +1,18 @@
 
-/* ==========================================
-   ERSSOFT - LINKEDIN POSTS API
-   Cloudflare Pages Functions
-   ========================================== */
+interface KVNamespace {
+  get(key: string): Promise<string | null>;
+  put(
+    key: string,
+    value: string,
+    options?: { expirationTtl?: number }
+  ): Promise<void>;
+}
 
 interface Env {
   LINKEDIN_ACCESS_TOKEN: string;
   LINKEDIN_COMPANY_ID: string;
   LINKEDIN_API_VERSION: string;
+  LINKEDIN_CACHE: KVNamespace;
 }
 
 interface PagesContext {
@@ -15,22 +20,22 @@ interface PagesContext {
   env: Env;
 }
 
-type LinkedInPost = Record<string, any>;
-
 const API = "https://api.linkedin.com/rest";
 
-const PAGE_SIZE = 20;
-const MAX_PAGES = 5;
+const CACHE_KEY = "linkedin-posts-v2";
+const RETRY_KEY = "linkedin-api-retry-after-v2";
+
+const CACHE_SECONDS = 21600;
+const RETRY_SECONDS = 3600;
+
+type Post = Record<string, any>;
 
 function json(data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control":
-        status === 200
-          ? "public, max-age=300"
-          : "no-store",
+      "Cache-Control": "no-store",
       "X-Content-Type-Options": "nosniff",
     },
   });
@@ -45,15 +50,10 @@ function apiHeaders(env: Env): HeadersInit {
   };
 }
 
-/* ==========================================
-   LINKEDIN REQUEST
-   ========================================== */
-
 async function linkedinGet(
   url: string,
   env: Env
 ): Promise<any> {
-
   const response = await fetch(url, {
     method: "GET",
     headers: apiHeaders(env),
@@ -68,20 +68,19 @@ async function linkedinGet(
       details: details.slice(0, 500),
     });
 
-    throw new Error(
+    const error = new Error(
       `LinkedIn API HTTP ${response.status}`
     );
+
+    (error as any).status = response.status;
+
+    throw error;
   }
 
   return response.json();
 }
 
-/* ==========================================
-   URL HELPERS
-   ========================================== */
-
 function validUrl(value: unknown): string | null {
-
   if (typeof value !== "string") return null;
 
   try {
@@ -90,44 +89,16 @@ function validUrl(value: unknown): string | null {
     return url.protocol === "https:"
       ? url.href
       : null;
-
   } catch {
     return null;
   }
 }
 
 function mediaId(value: any): string | null {
-
-  if (typeof value === "string") {
-    return value;
-  }
+  if (typeof value === "string") return value;
 
   if (typeof value?.id === "string") {
     return value.id;
-  }
-
-  return null;
-}
-
-/* ==========================================
-   IMAGE RESOLUTION
-   ========================================== */
-
-function selectImage(data: any): string | null {
-
-  const candidates = [
-    data?.downloadUrl,
-    data?.downloadUrl?.url,
-    data?.imageUrl,
-    data?.url,
-    data?.image?.downloadUrl,
-  ];
-
-  for (const candidate of candidates) {
-
-    const url = validUrl(candidate);
-
-    if (url) return url;
   }
 
   return null;
@@ -137,40 +108,27 @@ async function resolveImage(
   urn: string,
   env: Env
 ): Promise<string | null> {
-
   try {
-
     const data = await linkedinGet(
       `${API}/images/${encodeURIComponent(urn)}`,
       env
     );
 
-    const imageUrl = selectImage(data);
-
-    if (!imageUrl) {
-      console.error(
-        "LinkedIn image URL unavailable",
-        urn
-      );
-    }
-
-    return imageUrl;
-
+    return (
+      validUrl(data?.downloadUrl) ??
+      validUrl(data?.downloadUrl?.url) ??
+      validUrl(data?.imageUrl) ??
+      null
+    );
   } catch (error) {
-
     console.error(
       "LinkedIn image resolution failed",
-      urn,
-      error
+      String(error)
     );
 
     return null;
   }
 }
-
-/* ==========================================
-   VIDEO RESOLUTION
-   ========================================== */
 
 async function resolveVideo(
   urn: string,
@@ -179,38 +137,29 @@ async function resolveVideo(
   videoUrl: string | null;
   thumbnailUrl: string | null;
 }> {
-
   try {
-
     const data = await linkedinGet(
       `${API}/videos/${encodeURIComponent(urn)}`,
       env
     );
 
-    const videoUrl =
-      validUrl(data?.downloadUrl) ??
-      validUrl(data?.downloadUrl?.url) ??
-      validUrl(data?.videoUrl) ??
-      validUrl(data?.streamingUrl) ??
-      null;
-
-    const thumbnailUrl =
-      validUrl(data?.thumbnailUrl) ??
-      validUrl(data?.thumbnail?.downloadUrl) ??
-      validUrl(data?.thumbnail?.url) ??
-      null;
-
     return {
-      videoUrl,
-      thumbnailUrl,
+      videoUrl:
+        validUrl(data?.downloadUrl) ??
+        validUrl(data?.downloadUrl?.url) ??
+        validUrl(data?.videoUrl) ??
+        null,
+
+      thumbnailUrl:
+        validUrl(data?.thumbnailUrl) ??
+        validUrl(data?.thumbnail?.downloadUrl) ??
+        validUrl(data?.thumbnail?.url) ??
+        null,
     };
-
   } catch (error) {
-
     console.error(
       "LinkedIn video resolution failed",
-      urn,
-      error
+      String(error)
     );
 
     return {
@@ -220,15 +169,10 @@ async function resolveVideo(
   }
 }
 
-/* ==========================================
-   POST MEDIA
-   ========================================== */
-
 async function resolveMedia(
-  post: LinkedInPost,
+  post: Post,
   env: Env
 ) {
-
   const content = post.content ?? {};
 
   const result = {
@@ -238,40 +182,33 @@ async function resolveMedia(
     images: [] as string[],
   };
 
-  // Multiple images
-
   const multiImages = content.multiImage?.images;
 
   if (
     Array.isArray(multiImages) &&
     multiImages.length > 0
   ) {
-
     result.mediaType = "multiImage";
 
-    const resolved = await Promise.all(
-      multiImages.map(async (item: any) => {
+    const images: string[] = [];
 
-        const urn =
-          mediaId(item?.id) ??
-          mediaId(item?.image);
+    for (const item of multiImages) {
+      const urn =
+        mediaId(item?.id) ??
+        mediaId(item?.image);
 
-        if (!urn) return null;
+      if (!urn) continue;
 
-        return resolveImage(urn, env);
-      })
-    );
+      const url = await resolveImage(urn, env);
 
-    result.images = resolved.filter(
-      (url): url is string => Boolean(url)
-    );
+      if (url) images.push(url);
+    }
 
-    result.imageUrl = result.images[0] ?? null;
+    result.images = images;
+    result.imageUrl = images[0] ?? null;
 
     return result;
   }
-
-  // Single media
 
   const media = content.media;
 
@@ -282,10 +219,7 @@ async function resolveMedia(
 
   if (!urn) return result;
 
-  // Image
-
   if (urn.startsWith("urn:li:image:")) {
-
     result.mediaType = "image";
 
     result.imageUrl = await resolveImage(
@@ -300,10 +234,7 @@ async function resolveMedia(
     return result;
   }
 
-  // Video
-
   if (urn.startsWith("urn:li:video:")) {
-
     result.mediaType = "video";
 
     const video = await resolveVideo(
@@ -326,221 +257,213 @@ async function resolveMedia(
   return result;
 }
 
-/* ==========================================
-   FETCH COMPANY POSTS
-   ========================================== */
+async function fetchPosts(env: Env) {
+  const author =
+    `urn:li:organization:${env.LINKEDIN_COMPANY_ID}`;
 
-async function getAllPosts(
-  author: string,
-  env: Env
-): Promise<LinkedInPost[]> {
+  const url = new URL(`${API}/posts`);
 
-  const all: LinkedInPost[] = [];
+  url.searchParams.set("q", "author");
+  url.searchParams.set("author", author);
+  url.searchParams.set("count", "20");
+  url.searchParams.set("start", "0");
 
-  for (let page = 0; page < MAX_PAGES; page++) {
+  const data = await linkedinGet(
+    url.toString(),
+    env
+  );
 
-    const url = new URL(`${API}/posts`);
+  const elements = Array.isArray(data?.elements)
+    ? data.elements
+    : [];
 
-    url.searchParams.set("q", "author");
-    url.searchParams.set("author", author);
-    url.searchParams.set(
-      "count",
-      String(PAGE_SIZE)
+  const published = elements
+    .filter((post: Post) =>
+      post.author === author &&
+      post.lifecycleState === "PUBLISHED" &&
+      post.visibility === "PUBLIC"
+    )
+    .sort((a: Post, b: Post) =>
+      Number(b.publishedAt ?? b.createdAt ?? 0) -
+      Number(a.publishedAt ?? a.createdAt ?? 0)
     );
 
-    url.searchParams.set(
-      "start",
-      String(page * PAGE_SIZE)
+  const posts: Post[] = [];
+
+  for (const post of published) {
+    const media = await resolveMedia(
+      post,
+      env
     );
 
-    let data: any;
+    posts.push({
+      id: post.id,
 
-    try {
+      text: post.commentary ?? "",
 
-      data = await linkedinGet(
-        url.toString(),
-        env
-      );
+      publishedAt:
+        post.publishedAt ??
+        post.createdAt,
 
-    } catch (error) {
+      url: post.id
+        ? `https://www.linkedin.com/feed/update/${post.id}/`
+        : null,
 
-      console.error(
-        "LinkedIn pagination error",
-        page,
-        error
-      );
-
-      // Do not discard previously fetched posts.
-
-      if (all.length === 0) {
-        throw error;
-      }
-
-      break;
-    }
-
-    const elements = Array.isArray(data?.elements)
-      ? data.elements
-      : [];
-
-    all.push(...elements);
-
-    if (elements.length < PAGE_SIZE) {
-      break;
-    }
+      ...media,
+    });
   }
 
-  return all;
+  return {
+    company: "ErsSoft Limited",
+    companyId: env.LINKEDIN_COMPANY_ID,
+    count: posts.length,
+    posts,
+    updatedAt: new Date().toISOString(),
+  };
 }
-
-/* ==========================================
-   CLOUDFLARE ENTRY POINT
-   ========================================== */
 
 export const onRequestGet = async (
   context: PagesContext
 ): Promise<Response> => {
-
   const env = context.env;
 
-  // Validate configuration
+  if (!env.LINKEDIN_CACHE) {
+    return json({
+      error:
+        "LINKEDIN_CACHE KV binding is missing.",
+    }, 503);
+  }
+
+  const cachedRaw = await env.LINKEDIN_CACHE.get(
+    CACHE_KEY
+  );
+
+  let cached: any = null;
+
+  if (cachedRaw) {
+    try {
+      cached = JSON.parse(cachedRaw);
+    } catch {
+      console.error(
+        "Invalid LinkedIn cache data"
+      );
+    }
+  }
+
+  const now = Date.now();
+
+  // Return fresh cached posts.
+
+  if (
+    cached &&
+    typeof cached.cachedAt === "number" &&
+    now - cached.cachedAt < CACHE_SECONDS * 1000
+  ) {
+    return json({
+      ...cached.data,
+      cache: "HIT",
+    });
+  }
+
+  // Avoid repeated requests after an API failure.
+
+  const retryRaw = await env.LINKEDIN_CACHE.get(
+    RETRY_KEY
+  );
+
+  const retryAfter = Number(retryRaw ?? 0);
+
+  if (retryAfter > now) {
+    if (cached?.data) {
+      return json({
+        ...cached.data,
+        cache: "STALE",
+      });
+    }
+
+    return json({
+      error:
+        "LinkedIn API is temporarily rate limited.",
+      retryAfter:
+        new Date(retryAfter).toISOString(),
+    }, 503);
+  }
+
+  // Check configuration only when refreshing.
 
   if (
     !env.LINKEDIN_ACCESS_TOKEN ||
     !env.LINKEDIN_COMPANY_ID ||
     !env.LINKEDIN_API_VERSION
   ) {
-
-    return json(
-      {
-        error:
-          "LinkedIn configuration is incomplete.",
-      },
-      503
-    );
-  }
-
-  const author =
-    `urn:li:organization:${env.LINKEDIN_COMPANY_ID}`;
-
-  try {
-
-    // Fetch posts
-
-    const rawPosts = await getAllPosts(
-      author,
-      env
-    );
-
-    // Published public company posts
-
-    const published = rawPosts
-      .filter((post) => {
-
-        return (
-          post.author === author &&
-          post.lifecycleState === "PUBLISHED" &&
-          post.visibility === "PUBLIC"
-        );
-
-      })
-      .sort((a, b) => {
-
-        const dateA = Number(
-          a.publishedAt ??
-          a.createdAt ??
-          0
-        );
-
-        const dateB = Number(
-          b.publishedAt ??
-          b.createdAt ??
-          0
-        );
-
-        return dateB - dateA;
+    if (cached?.data) {
+      return json({
+        ...cached.data,
+        cache: "STALE",
       });
-
-    const posts: any[] = [];
-
-    // Process media in small batches
-
-    for (
-      let i = 0;
-      i < published.length;
-      i += 5
-    ) {
-
-      const batch = published.slice(
-        i,
-        i + 5
-      );
-
-      const mapped = await Promise.all(
-        batch.map(async (post) => {
-
-          const media = await resolveMedia(
-            post,
-            env
-          );
-
-          return {
-
-            id: post.id,
-
-            text:
-              post.commentary ?? "",
-
-            publishedAt:
-              post.publishedAt ??
-              post.createdAt,
-
-            url: post.id
-              ? `https://www.linkedin.com/feed/update/${post.id}/`
-              : null,
-
-            ...media,
-
-          };
-        })
-      );
-
-      posts.push(...mapped);
     }
 
-    // Successful response
+    return json({
+      error:
+        "LinkedIn configuration is incomplete.",
+    }, 503);
+  }
+
+  try {
+    const data = await fetchPosts(env);
+
+    const payload = {
+      cachedAt: Date.now(),
+      data,
+    };
+
+    await env.LINKEDIN_CACHE.put(
+      CACHE_KEY,
+      JSON.stringify(payload)
+    );
 
     return json({
-
-      company: "ErsSoft Limited",
-
-      companyId:
-        env.LINKEDIN_COMPANY_ID,
-
-      count: posts.length,
-
-      posts,
-
+      ...data,
+      cache: "MISS",
     });
-
   } catch (error) {
+    const status = (error as any)?.status;
 
     console.error(
-      "LinkedIn posts retrieval failed",
-      error
+      "LinkedIn refresh failed",
+      String(error)
     );
 
-    return json(
+    const retryUntil =
+      Date.now() + RETRY_SECONDS * 1000;
+
+    await env.LINKEDIN_CACHE.put(
+      RETRY_KEY,
+      String(retryUntil),
       {
-        error:
-          "Unable to retrieve LinkedIn posts.",
-
-        detail:
-          error instanceof Error
-            ? error.message
-            : "Unknown error",
-      },
-      502
+        expirationTtl: RETRY_SECONDS,
+      }
     );
+
+    // Keep the last successful data.
+
+    if (cached?.data) {
+      return json({
+        ...cached.data,
+        cache: "STALE",
+      });
+    }
+
+    return json({
+      error:
+        "Unable to retrieve LinkedIn posts.",
+
+      detail:
+        error instanceof Error
+          ? error.message
+          : "Unknown error",
+
+      upstreamStatus: status ?? null,
+    }, 503);
   }
 };
