@@ -114,6 +114,13 @@ export const onRequestGet = async (
 
     const data: any = await response.json();
 
+    console.error("LinkedIn error details", {
+  status: response.status,
+  serviceErrorCode: details.serviceErrorCode,
+  code: details.code,
+  message: details.message,
+});
+
     const posts = (data.elements ?? [])
       .filter((post: any) => {
         return (
