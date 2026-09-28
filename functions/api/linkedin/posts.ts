@@ -52,16 +52,6 @@ export const onRequestGet = async (
   url.searchParams.set("start", "0");
   url.searchParams.set("sortBy", "CREATED");
 
-  // Temporary diagnostic: never log the actual token.
-  console.log("LinkedIn configuration check", {
-    tokenPresent: Boolean(LINKEDIN_ACCESS_TOKEN),
-    tokenLength: LINKEDIN_ACCESS_TOKEN?.length ?? 0,
-    tokenHasWhitespace:
-      LINKEDIN_ACCESS_TOKEN !== LINKEDIN_ACCESS_TOKEN?.trim(),
-    companyId: LINKEDIN_COMPANY_ID,
-    apiVersion: LINKEDIN_API_VERSION,
-  });
-
   try {
     const response = await fetch(url.toString(), {
       method: "GET",
@@ -89,15 +79,6 @@ export const onRequestGet = async (
           details.code ??
           "unknown"
         );
-
-        // LinkedIn error details.
-        // Do not log tokens or Authorization headers.
-        console.error("LinkedIn error details", {
-          status: response.status,
-          serviceErrorCode: details.serviceErrorCode,
-          code: details.code,
-          message: details.message,
-        });
 
         console.error("LinkedIn API diagnostic", {
           status: response.status,
