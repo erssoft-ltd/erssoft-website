@@ -53,21 +53,25 @@
      LINKEDIN TEXT FORMAT
      ========================================== */
 
-  function formatLinkedInText(value) {
-    if (typeof value !== "string") return "";
+  
+function formatLinkedInText(value) {
+  if (typeof value !== "string") return "";
 
-    return value
-      // LinkedIn hashtag format
-      .replace(/\{hashtag\\?\|([^}]+)\}/gi, "$1")
+  return value
+    // LinkedIn hashtag wrapper
+    .replace(/\{hashtag\\?\|([^}]+)\}/gi, "$1")
 
-      // Normalise line breaks
-      .replace(/\r\n/g, "\n")
+    // Remaining escaped hashtag separators
+    .replace(/\\+#\|/g, "#")
+    .replace(/#\|/g, "#")
+    .replace(/\\+#/g, "#")
 
-      // Remove excessive blank lines
-      .replace(/\n{3,}/g, "\n\n")
+    // Normalise line breaks
+    .replace(/\r\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
 
-      .trim();
-  }
+    .trim();
+}
 
   /* ==========================================
      SAFE URL
