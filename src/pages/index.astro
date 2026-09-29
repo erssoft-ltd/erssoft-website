@@ -5,9 +5,34 @@ import Footer from "../components/Footer.astro";
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>ErsSoft Limited | ERP & Manufacturing Systems Consulting</title>
+  <meta name="description" content="ErsSoft Limited provides ERP, JD Edwards, manufacturing systems and data analytics consulting across the UK and internationally." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.erssoft.co.uk/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ERSSOFT Limited" />
+  <meta property="og:title" content="ErsSoft Limited | ERP & Manufacturing Systems Consulting" />
+  <meta property="og:description" content="ErsSoft Limited provides ERP, JD Edwards, manufacturing systems and data analytics consulting across the UK and internationally." />
+  <meta property="og:url" content="https://www.erssoft.co.uk/" />
+  <meta property="og:image" content="https://www.erssoft.co.uk/assets/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ErsSoft Limited | ERP & Manufacturing Systems Consulting" />
+  <meta name="twitter:description" content="ErsSoft Limited provides ERP, JD Edwards, manufacturing systems and data analytics consulting across the UK and internationally." />
+  <meta name="twitter:image" content="https://www.erssoft.co.uk/assets/logo.png" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ErsSoft Limited",
+    url: "https://www.erssoft.co.uk/",
+    logo: "https://www.erssoft.co.uk/assets/logo.png",
+    sameAs: [
+      "https://find-and-update.company-information.service.gov.uk/company/13391504",
+      "https://www.linkedin.com/company/77574975/"
+    ]
+  })} />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ErsSoft Limited | ERP & Manufacturing Systems Consulting</title>
+  
 
   <!-- Theme & Icons -->
   <meta name="theme-color" content="#0b1020">
@@ -16,40 +41,6 @@ import Footer from "../components/Footer.astro";
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
   <!-- SEO -->
-  <meta name="description" content="ErsSoft Limited provides ERP, JD Edwards, manufacturing systems and data analytics consulting across the UK and internationally." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://www.erssoft.co.uk" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="ErsSoft Limited | ERP & Manufacturing Systems Experts in the UK" />
-  <meta property="og:description" content="UK-based ERP, JD Edwards and manufacturing systems consulting company delivering enterprise-grade solutions." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.erssoft.co.uk" />
-  <meta property="og:image" content="https://www.erssoft.co.uk/assets/logo.png" />
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "ErsSoft Limited",
-    "url": "https://www.erssoft.co.uk",
-    "logo": "https://www.erssoft.co.uk/assets/logo.png",
-    "email": "info@erssoft.co.uk",
-    "telephone": "+44 7518 630370",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "International House, 12 Constance Street",
-      "addressLocality": "London",
-      "postalCode": "E16 2DQ",
-      "addressCountry": "GB"
-    },
-    "sameAs": [
-      "https://find-and-update.company-information.service.gov.uk/company/13391504",
-      "https://www.linkedin.com/company/77574975/"
-    ]
-  }
-  </script>
 
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/header.css">
