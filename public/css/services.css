@@ -68,3 +68,11 @@
 @media (max-width: 900px) {
   .page-content .cta { padding: 24px; }
 }
+
+/* Mobile only: align Services content with Home */
+@media (max-width: 600px) {
+  .page-content .section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

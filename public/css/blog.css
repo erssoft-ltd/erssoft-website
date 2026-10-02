@@ -29,3 +29,56 @@
 .blog-article .insights-body ol{line-height:1.5}
 .blog-article .insights-body p{margin:0 0 12px}
 .blog-article .insights-body li{margin-bottom:4px}
+
+/* Mobile only: compact bullet category navigation */
+@media (max-width: 600px) {
+
+  .insights-categories {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 34px;
+    min-height: 42px;
+  }
+
+  .insights-category {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    padding: 0;
+    border: 2px solid #9aa0c8;
+    border-radius: 50%;
+    background: transparent;
+    color: transparent;
+    font-size: 0;
+    cursor: pointer;
+    overflow: visible;
+  }
+
+  .insights-category[aria-pressed="true"] {
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    background: #287eaa;
+    border-color: #287eaa;
+  }
+
+  /* Show the selected category name below the bullets */
+  .insights-category[aria-pressed="true"]::after {
+    content: attr(data-category);
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 220px;
+    color: #c7cbe6;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}

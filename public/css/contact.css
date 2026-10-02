@@ -50,3 +50,16 @@
 .page-content .form-container button {
   font-size: 16px;
 }
+
+/* Mobile only: align Contact content with Home */
+@media (max-width: 600px) {
+  .page-content .section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .page-content .form-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
