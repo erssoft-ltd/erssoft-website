@@ -10,22 +10,28 @@ import Footer from "../components/Footer.astro";
 
   <meta
     name="description"
-    content="Explore the ErsSoft Limited journey from its foundation in 2021 to JD Edwards consulting and in-house business solutions."
+    content="Explore the ErsSoft Limited journey from its foundation in 2021 to JD Edwards consulting, in-house business solutions, data analytics and artificial intelligence."
   />
 
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.erssoft.co.uk/our-journey/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="ERSSOFT Limited" />
+  <meta property="og:site_name" content="ErsSoft Limited" />
   <meta property="og:title" content="Our Journey | ErsSoft Limited" />
-  <meta property="og:description" content="From our foundation to JD Edwards consulting and in-house solutions, explore the ERSSOFT journey." />
+  <meta
+    property="og:description"
+    content="From our foundation to JD Edwards consulting, in-house solutions, data and artificial intelligence, explore the ErsSoft journey."
+  />
   <meta property="og:url" content="https://www.erssoft.co.uk/our-journey/" />
   <meta property="og:image" content="https://www.erssoft.co.uk/assets/logo.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Our Journey | ErsSoft Limited" />
-  <meta name="twitter:description" content="From our foundation to JD Edwards consulting and in-house solutions, explore the ERSSOFT journey." />
+  <meta
+    name="twitter:description"
+    content="From our foundation to JD Edwards consulting, in-house solutions, data and artificial intelligence, explore the ErsSoft journey."
+  />
   <meta name="twitter:image" content="https://www.erssoft.co.uk/assets/logo.png" />
 
   <meta charset="UTF-8" />
@@ -50,18 +56,20 @@ import Footer from "../components/Footer.astro";
 <main class="journey-page">
 
   <section class="journey-intro">
-    <span class="journey-eyebrow">ERSSOFT LIMITED</span>
+    <span class="journey-eyebrow">ErsSoft Limited</span>
 
     <h1>Our Journey</h1>
 
     <p>
       From our foundation to JD Edwards consulting and in-house solutions,
-      ERSSOFT continues to develop through experience, technology and
+      ErsSoft continues to develop through experience, technology and
       practical business knowledge.
     </p>
   </section>
 
-  <section class="journey-timeline" aria-label="ERSSOFT journey timeline">
+  <section class="journey-timeline" aria-label="ErsSoft journey timeline">
+
+    <div class="journey-arrow" aria-hidden="true"></div>
 
     <article class="journey-item">
       <div class="journey-marker">
@@ -71,10 +79,10 @@ import Footer from "../components/Footer.astro";
 
       <div class="journey-card">
         <span class="journey-label">The Beginning</span>
-        <h2>ERSSOFT Limited Founded</h2>
+        <h2>ErsSoft Limited Founded</h2>
 
         <p>
-          ERSSOFT Limited was established in the United Kingdom,
+          ErsSoft Limited was established in the United Kingdom,
           built on years of experience in ERP systems, JD Edwards
           and business processes.
         </p>
@@ -92,7 +100,7 @@ import Footer from "../components/Footer.astro";
         <h2>First Project</h2>
 
         <p>
-          ERSSOFT started its first project engagement with Renaissance.
+          ErsSoft started its first project engagement with Renaissance.
           This was an important step in bringing our ERP experience
           into the new company and beginning our project journey.
         </p>
@@ -110,7 +118,7 @@ import Footer from "../components/Footer.astro";
         <h2>A Period of Transition</h2>
 
         <p>
-          These were quieter years for ERSSOFT. We used this period
+          These were quieter years for ErsSoft. We used this period
           to review our direction, maintain our knowledge and think
           about how our experience could be used in future solutions.
         </p>
@@ -128,7 +136,7 @@ import Footer from "../components/Footer.astro";
         <h2>Building Our Own Solutions</h2>
 
         <p>
-          ERSSOFT started developing in-house business solutions.
+          ErsSoft started developing in-house business solutions.
           Our aim was to turn practical experience from ERP,
           business processes and real working environments into
           useful software.
@@ -147,10 +155,29 @@ import Footer from "../components/Footer.astro";
         <h2>JD Edwards &amp; In-House Solutions</h2>
 
         <p>
-          ERSSOFT continues to focus on JD Edwards and ERP consulting
+          ErsSoft continues to focus on JD Edwards and ERP consulting
           while developing its own business applications. Our work now
           brings together ERP experience, software development, data
           and new technologies.
+        </p>
+      </div>
+    </article>
+
+    <article class="journey-item">
+      <div class="journey-marker">
+        <span class="journey-dot"></span>
+        <span class="journey-year">CURRENT</span>
+      </div>
+
+      <div class="journey-card">
+        <span class="journey-label">The Journey Continues</span>
+        <h2>ERP, Data &amp; Artificial Intelligence</h2>
+
+        <p>
+          Today, our journey also includes
+          data analytics and artificial intelligence, bringing together ERP
+          experience, software development and new technologies to build
+          practical solutions for real business needs.
         </p>
       </div>
     </article>
@@ -167,6 +194,8 @@ import Footer from "../components/Footer.astro";
 </main>
 
 <Footer />
+
+<script is:inline src="/js/our-journey.js"></script>
 
 </body>
 </html>
