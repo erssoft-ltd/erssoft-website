@@ -218,6 +218,8 @@
 
     if (media) {
       article.appendChild(media);
+    } else {
+      article.classList.add("linkedin-card--text-only");
     }
 
     // Post content
