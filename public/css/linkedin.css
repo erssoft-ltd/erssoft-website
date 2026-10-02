@@ -32,9 +32,11 @@
 
 .linkedin-card__text { margin:0; max-height:260px; overflow-y:auto; overflow-wrap:anywhere; white-space:pre-line; font-size:14px; line-height:1.6; color:#fff; }
 
-/* Text-only posts use the full available card height */
-.linkedin-card--text-only .linkedin-card__body { min-height:0; }
-.linkedin-card--text-only .linkedin-card__text { flex:1 1 0; min-height:0; max-height:none; overflow-y:auto; }
+/* Text-only posts use a fixed card height and the text fills the available space */
+.linkedin-card--text-only { height:520px; }
+.linkedin-card--text-only .linkedin-card__body { display:grid; grid-template-rows:auto minmax(0,1fr) auto; height:100%; min-height:0; }
+.linkedin-card--text-only .linkedin-card__text { min-height:0; max-height:none; overflow-y:auto; }
+.linkedin-card--text-only .linkedin-card__link { margin-top:0; }
 
 .linkedin-card__link { display:inline-block; margin-top:auto; padding-top:8px; color:#8ed3ff; font-size:13px; font-weight:600; text-decoration:none; }
 .linkedin-card__link:hover { text-decoration:underline; }
@@ -46,4 +48,4 @@
 
 @media(max-width:900px) { .linkedin-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 
-@media(max-width:600px) { .linkedin-page { padding:20px 16px 36px; } .linkedin-intro { flex-direction:column; align-items:flex-start; gap:16px; } .linkedin-intro h1 { font-size:27px; } .linkedin-grid { grid-template-columns:minmax(0,1fr); } .linkedin-card__image, .linkedin-card video.linkedin-card__image { height:190px !important; min-height:190px; } }
+@media(max-width:600px) { .linkedin-page { padding:20px 16px 36px; } .linkedin-intro { flex-direction:column; align-items:flex-start; gap:16px; } .linkedin-intro h1 { font-size:27px; } .linkedin-grid { grid-template-columns:minmax(0,1fr); } .linkedin-card__image, .linkedin-card video.linkedin-card__image { height:190px !important; min-height:190px; } .linkedin-card--text-only { height:auto; min-height:420px; } }
