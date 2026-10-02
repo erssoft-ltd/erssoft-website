@@ -33,7 +33,8 @@
 .linkedin-card__text { margin:0; max-height:260px; overflow-y:auto; overflow-wrap:anywhere; white-space:pre-line; font-size:14px; line-height:1.6; color:#fff; }
 
 /* Text-only posts use the full available card height */
-.linkedin-card--text-only .linkedin-card__text { flex:1; max-height:none; overflow-y:auto; }
+.linkedin-card--text-only .linkedin-card__body { min-height:0; }
+.linkedin-card--text-only .linkedin-card__text { flex:1 1 0; min-height:0; max-height:none; overflow-y:auto; }
 
 .linkedin-card__link { display:inline-block; margin-top:auto; padding-top:8px; color:#8ed3ff; font-size:13px; font-weight:600; text-decoration:none; }
 .linkedin-card__link:hover { text-decoration:underline; }
