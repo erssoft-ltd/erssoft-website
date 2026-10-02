@@ -3,7 +3,7 @@ title: "Why Is Techno-Functional Expertise Important in JD Edwards EnterpriseOne
 description: "Explore why Techno-Functional expertise matters in JD Edwards EnterpriseOne projects, from business requirements and integration to testing and support."
 category: "JD Edwards"
 date: 2026-09-28
-author: "ERSSOFT Limited"
+author: "ErsSoft Limited"
 ---
 
 ![JD Edwards EnterpriseOne Techno-Functional Approach – From Business Need to JDE Solution](/images/insights/jde-techno-functional.png)

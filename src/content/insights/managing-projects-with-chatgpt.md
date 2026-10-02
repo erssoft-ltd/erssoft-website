@@ -3,7 +3,7 @@ title: "What I Learned from Managing Projects with ChatGPT"
 description: "Lessons from my own experience of using ChatGPT for websites, software projects and everyday project work."
 date: 2026-10-02
 category: "Artificial Intelligence"
-author: "ERSSOFT Limited"
+author: "ErsSoft Limited"
 ---
 
 
