@@ -134,6 +134,25 @@ html,body { margin:0; padding:0; background:#0b1020; color:#fff; font-family:-ap
   }
 }
 
+@media(max-width:900px) {
+  .journey-item.is-active .journey-dot {
+    background:#8ed3ff;
+    box-shadow:0 0 0 3px #287eaa,0 0 18px rgba(142,211,255,.8);
+    transform:scale(1.25);
+  }
+
+  .journey-item.is-active .journey-year {
+    color:#fff;
+    text-shadow:0 0 12px rgba(142,211,255,.8);
+  }
+
+  .journey-item.is-active .journey-card {
+    border-color:#8ed3ff;
+    background:#192744;
+    box-shadow:0 0 24px rgba(40,126,170,.28);
+    transform:translateX(4px);
+  }
+}
 
 @media(prefers-reduced-motion:reduce) {
   .journey-dot,
