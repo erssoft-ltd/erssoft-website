@@ -1,0 +1,194 @@
+<div
+  id="erssoft-cookie-consent"
+  class="cookie-consent"
+  role="dialog"
+  aria-label="Cookie preferences"
+  aria-live="polite"
+  hidden
+>
+  <div class="cookie-consent__content">
+
+    <div class="cookie-consent__text">
+      <strong>We value your privacy</strong>
+
+      <p>
+        We use analytics cookies to understand how visitors use our website
+        and to help us improve our services. You can accept or reject
+        analytics cookies.
+      </p>
+    </div>
+
+    <div class="cookie-consent__actions">
+      <a class="cookie-consent__privacy" href="/privacy/">
+        Privacy Policy
+      </a>
+
+      <button id="erssoft-reject-analytics" type="button">
+        Reject analytics
+      </button>
+
+      <button
+        id="erssoft-accept-analytics"
+        type="button"
+        autofocus
+      >
+        Accept analytics
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 9999;
+    padding: 11px 20px 12px;
+    box-sizing: border-box;
+    background: #0b1020;
+    color: #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.18);
+  }
+
+  .cookie-consent__text strong {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;    
+  }
+
+  .cookie-consent__text p {
+    margin: 0;
+    color: #aeb8c8;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;    
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 8px;
+  }
+
+  .cookie-consent__privacy {
+    color: #8ed3ff;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .cookie-consent__actions button {
+    padding: 7px 13px;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+  }  
+
+
+  #erssoft-reject-analytics {
+    background: transparent;
+    color: #ffffff;
+  }
+
+  #erssoft-accept-analytics {
+    background: #ffffff;
+    color: #0b1020;
+    font-weight: 700;
+  }
+
+  #erssoft-accept-analytics:focus-visible {
+    outline: 3px solid #8ed3ff;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 700px) {
+    .cookie-consent {
+      padding: 14px 16px 16px;
+    }
+
+    .cookie-consent__text strong {
+      font-size: 16px;
+    }
+
+    .cookie-consent__text p {
+      font-size: 13px;
+    }
+
+    .cookie-consent__actions {
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .cookie-consent__privacy {
+      width: 100%;
+      margin-bottom: 2px;
+    }
+
+    .cookie-consent__actions button {
+      flex: 1;
+      max-width: 180px;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const STORAGE_KEY = 'erssoft_analytics_consent';
+    const banner = document.getElementById('erssoft-cookie-consent');
+    const acceptButton = document.getElementById('erssoft-accept-analytics');
+    const rejectButton = document.getElementById('erssoft-reject-analytics');
+
+    if (!banner || !acceptButton || !rejectButton) return;
+
+    let savedConsent = null;
+
+    try {
+      savedConsent = localStorage.getItem(STORAGE_KEY);
+    } catch (error) {
+      savedConsent = null;
+    }
+
+    if (savedConsent !== 'granted' && savedConsent !== 'denied') {
+      banner.hidden = false;
+    }
+
+    const updateConsent = (value) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, value);
+      } catch (error) {
+        // Consent still applies for the current page.
+      }
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: value
+        });
+      }
+
+      banner.hidden = true;
+    };
+
+    acceptButton.addEventListener('click', () => {
+      updateConsent('granted');
+    });
+
+    rejectButton.addEventListener('click', () => {
+      updateConsent('denied');
+    });
+  })();
+</script>

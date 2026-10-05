@@ -1,9 +1,6 @@
-<!-- Google tag (gtag.js) -->
-<script
-  async
-  src="https://www.googletagmanager.com/gtag/js?id=G-YB9FF1WGBQ"
-></script>
+<!-- Google Analytics + Google Consent Mode -->
 
+<!-- Consent state MUST be defined before Google tag loads -->
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
 
@@ -11,6 +8,38 @@
     dataLayer.push(arguments);
   }
 
+  // Default: analytics consent is denied
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+
+  // Restore previously saved choice
+  try {
+    const consent = localStorage.getItem('erssoft_analytics_consent');
+
+    if (consent === 'granted') {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted'
+      });
+    }
+  } catch (error) {
+    // Keep default denied state if storage is unavailable
+  }
+
   gtag('js', new Date());
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script
+  is:inline
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-YB9FF1WGBQ"
+></script>
+
+<script is:inline>
   gtag('config', 'G-YB9FF1WGBQ');
 </script>
