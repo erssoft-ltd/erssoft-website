@@ -1,11 +1,14 @@
 ---
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import GoogleAnalytics from '../../components/GoogleAnalytics.astro';
 import { getCollection } from 'astro:content';
 const articles = (await getCollection('insights')).sort((a,b)=>b.data.date.getTime()-a.data.date.getTime());
 const categories = ['All', 'JD Edwards', 'ERP Consulting', 'Integration', 'Business Intelligence', 'Artificial Intelligence', 'Data & Analytics'];
 --- 
 <!doctype html><html lang="en"><head>
+  <GoogleAnalytics />
+
   <title>Insights & Expertise | ERSSOFT Limited</title>
   <meta name="description" content="ERSSOFT technical insights and articles on JD Edwards, ERP consulting, integration, business intelligence, artificial intelligence and data & analytics." />
   <meta name="robots" content="index, follow" />
