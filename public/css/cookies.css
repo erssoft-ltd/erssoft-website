@@ -1,0 +1,98 @@
+.hero {
+  padding: 90px 64px 40px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: 52px;
+  margin: 0 0 20px;
+}
+
+.hero p {
+  color: #c7cbe6;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 800px;
+}
+
+.section {
+  padding: 40px 64px 80px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.card {
+  background: #12183a;
+  padding: 40px;
+  border-radius: 16px;
+}
+
+.cookies-content {
+  max-width: 900px;
+}
+
+.cookies-content h2 {
+  margin-top: 42px;
+  margin-bottom: 14px;
+  font-size: 24px;
+}
+
+.cookies-content h2:first-child {
+  margin-top: 0;
+}
+
+.cookies-content p,
+.cookies-content li {
+  color: #c7cbe6;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.cookies-content ul {
+  padding-left: 24px;
+}
+
+.cookies-content a {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 70px 24px 30px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .section {
+    padding: 30px 24px 60px;
+  }
+
+  .card {
+    padding: 28px;
+  }
+}
+
+/* Spacing only: consistent with Privacy Policy and Terms of Service. */
+.page-content .hero,
+.page-content .section {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.page-content .card,
+.page-content .form-container,
+.page-content .thankyou-box {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .page-content .hero,
+  .page-content .section {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}

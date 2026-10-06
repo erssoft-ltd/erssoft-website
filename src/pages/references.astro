@@ -1,0 +1,193 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <GoogleAnalytics />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>References | ErsSoft Limited</title>
+
+  <!-- Theme & Icons -->
+  <meta name="theme-color" content="#0b1020">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+  <!-- SEO -->
+  <meta
+    name="description"
+    content="Selected companies and organisations ErsSoft Limited has worked with."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.erssoft.co.uk/references/" />
+
+  <link rel="stylesheet" href="/css/common.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/references.css">
+</head>
+
+<body>
+
+<Header />
+
+<div class="page-content">
+
+  <section class="references-section">
+
+    <h1>References</h1>
+
+    <p class="references-intro">
+      Selected companies and organisations we have worked with.
+    </p>
+
+    <div class="references-grid">
+
+      <!-- ENKA -->
+      <a
+        class="reference-card"
+        href="https://www.enka.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit ENKA website"
+      >
+        <img
+          src="/assets/references/01-enka.webp"
+          alt="ENKA"
+        />
+      </a>
+
+      <!-- Çimtaş Pipe -->
+      <a
+        class="reference-card"
+        href="https://www.cimtaspipe.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit Çimtaş Pipe website"
+      >
+        <img
+          src="/assets/references/02-cimtas.webp"
+          alt="Çimtaş Pipe"
+        />
+      </a>
+
+      <!-- Rönesans -->
+      <a
+        class="reference-card"
+        href="https://www.ronesans.com/en"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit Rönesans website"
+      >
+        <img
+          src="/assets/references/03-ronesans.webp"
+          alt="Rönesans"
+        />
+      </a>
+
+      <!-- Teoden -->
+      <div class="reference-item">
+        <a
+          class="reference-card"
+          href="https://www.teoden.co.uk/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Teoden website"
+        >
+          <img
+            src="/assets/references/04-teoden.webp"
+            alt="Teoden"
+          />
+        </a>
+
+        <a
+          class="company-house-link"
+          href="https://find-and-update.company-information.service.gov.uk/company/13126496"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Companies House
+        </a>
+      </div>
+
+      <!-- Pusula IT -->
+      <div class="reference-item">
+        <a
+          class="reference-card"
+          href="https://www.pusulait.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Pusula IT website"
+        >
+          <img
+            src="/assets/references/05-pusulait.webp"
+            alt="Pusula IT"
+          />
+        </a>
+
+        <a
+          class="company-house-link"
+          href="https://find-and-update.company-information.service.gov.uk/company/11955336"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Companies House
+        </a>
+      </div>
+
+      <!-- Cologne Sportspark -->
+      <a
+        class="reference-card"
+        href="https://www.cologne-sportspark.de/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit Cologne Sportspark website"
+      >
+        <img
+          src="/assets/references/06-cologne-sportspark.webp"
+          alt="Cologne Sportspark"
+        />
+      </a>
+
+      <!-- MCA Technologies Ltd -->
+      <div class="reference-item">
+        <a
+          class="reference-card reference-card--text"
+          href="https://find-and-update.company-information.service.gov.uk/company/11376487"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View MCA Technologies Ltd on Companies House"
+        >
+          <span>MCA Technologies Ltd</span>
+        </a>
+
+        <a
+          class="company-house-link"
+          href="https://find-and-update.company-information.service.gov.uk/company/11376487"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Companies House
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+<Footer />
+
+<CookieConsent />
+
+</body>
+</html>
