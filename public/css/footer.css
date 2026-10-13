@@ -49,3 +49,8 @@
   }
   .site-footer__map img { width: 82px; height: auto; }
 }
+@media (max-width: 900px) {
+  .site-footer img[src*="uk-london.svg"] {
+    margin-right: 6px;
+  }
+}
