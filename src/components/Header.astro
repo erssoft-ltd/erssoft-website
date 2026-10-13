@@ -2,10 +2,16 @@
 ---
 
 <header class="site-header">
-  <a class="site-header__logo" href="/" aria-label="ErsSoft Limited home">
-    <img src="/assets/logo.png" alt="ErsSoft Ltd logo">
-    <span>ErsSoft Limited</span>
-  </a>
+  <div class="site-header__brand-theme">
+    <a class="site-header__logo" href="/" aria-label="ErsSoft Limited home">
+      <img src="/assets/logo.png" alt="ErsSoft Ltd logo">
+      <span>ErsSoft Limited</span>
+    </a>
+    <button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Switch light/dark mode">
+      <span class="theme-toggle__moon" aria-hidden="true">☾</span>
+      <span class="theme-toggle__sun" aria-hidden="true">☀</span>
+    </button>
+  </div>
 
   <nav class="site-header__nav" aria-label="Main navigation">
     <a href="/">Home</a>
@@ -21,3 +27,31 @@
     </a>
   </nav>
 </header>
+
+<style>
+  /* Keep the existing logo and navigation styling. Place the theme icon over the brand name. */
+  .site-header__brand-theme { position: relative; flex: 0 0 auto; }
+  .site-header__brand-theme .site-header__logo { position: relative; }
+  .site-header__brand-theme .theme-toggle {
+    position: absolute;
+    top: -16px;
+    left: 54px;
+    width: calc(100% - 54px);
+    max-width: 140px;
+    height: 26px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .site-header__brand-theme .theme-toggle__sun { display: none; }
+  html[data-theme="light"] .site-header__brand-theme .theme-toggle__sun { display: inline; }
+  html[data-theme="light"] .site-header__brand-theme .theme-toggle__moon { display: none; }
+  @media (max-width: 900px) {
+    .site-header__brand-theme .theme-toggle { margin-left: 0; }
+  }
+</style>
+<script src="/js/theme.js" defer></script>

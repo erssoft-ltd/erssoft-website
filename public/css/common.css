@@ -1,3 +1,4 @@
+@import url("/css/theme.css");
 /* ERSSOFT shared site design — page-specific layouts belong in separate CSS files. */
 :root {
   --color-background: #0b1020;

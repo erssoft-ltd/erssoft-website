@@ -1,0 +1,137 @@
+/* ERSSOFT theme.css — replacement for the October Astro project.
+   Dark theme retains the original page styles. Light theme adjusts contrast.
+   Imported by public/css/common.css. */
+.theme-toggle { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid rgba(255,255,255,.32); border-radius:50%; background:transparent; color:inherit; cursor:pointer; }
+.theme-toggle:hover { border-color:currentColor; }
+.theme-toggle__sun { display:none; }
+html[data-theme="light"] .theme-toggle__sun { display:inline; }
+html[data-theme="light"] .theme-toggle__moon { display:none; }
+
+html[data-theme="light"] {
+  color-scheme:light;
+  --color-background:#f5f7fb;
+  --color-surface:#e5e7eb;
+  --color-footer:#e8edf5;
+  --color-text:#17233b;
+  --color-muted:#475569;
+  --color-subtle:#64748b;
+  --color-accent:#3456db;
+  --text:#17233b;
+  --muted:#475569;
+  --card-bg:#e5e7eb;
+  --card-text:#17233b;
+}
+html[data-theme="light"] body { background:var(--color-background); color:var(--color-text); }
+html[data-theme="light"] .site-header { background:#edf2fa; color:#17233b; }
+html[data-theme="light"] .site-header__nav a { color:#17233b; }
+html[data-theme="light"] .theme-toggle { color:#17233b; border-color:#9daac0; }
+html[data-theme="light"] .site-copy,
+html[data-theme="light"] .index-hero p,
+html[data-theme="light"] .index-intro,
+html[data-theme="light"] .hero p,
+html[data-theme="light"] .page-content > p,
+html[data-theme="light"] .page-content .hero p,
+html[data-theme="light"] .section > p,
+html[data-theme="light"] .blog-intro,
+html[data-theme="light"] .insights-empty,
+html[data-theme="light"] .insights-byline { color:#475569; }
+
+/* Main cards — original navy cards become light grey, text becomes navy. */
+html[data-theme="light"] :is(.site-card,.index-card,.card,.blog-card,.reference-card,.reference-card--text,.linkedin-card,.journey-card,.tiktok-card,.service-card,.feature-card,.insight-card,.about-card,.contact-card) {
+  background:#e5e7eb !important;
+  color:#17233b !important;
+  border-color:#cbd5e1;
+}
+html[data-theme="light"] :is(.site-card,.index-card,.card,.blog-card,.reference-card,.reference-card--text,.linkedin-card,.journey-card,.tiktok-card,.service-card,.feature-card,.insight-card,.about-card,.contact-card) :is(h1,h2,h3,h4,p,li,strong,small) {
+  color:#17233b !important;
+}
+/* Preserve readable secondary metadata and intentional action-link accents. */
+html[data-theme="light"] .linkedin-card__date,
+html[data-theme="light"] .journey-label,
+html[data-theme="light"] .reference-card--text span { color:#475569 !important; }
+html[data-theme="light"] .linkedin-card__text { color:#17233b !important; }
+html[data-theme="light"] .linkedin-card__link,
+html[data-theme="light"] .blog-card .blog-read,
+html[data-theme="light"] .blog-card .blog-tag { color:#1d4e89 !important; }
+
+/* Pages that explicitly hard-code dark page backgrounds and white text. */
+html[data-theme="light"] :is(.linkedin-page,.journey-page) { background:#f5f7fb; color:#17233b; }
+html[data-theme="light"] :is(.linkedin-intro h1,.linkedin-section-header h2,.journey-intro h1,.journey-ending p) { color:#17233b; }
+html[data-theme="light"] :is(.linkedin-intro p,.linkedin-status,.journey-intro p) { color:#475569; }
+html[data-theme="light"] .journey-year,
+html[data-theme="light"] .journey-eyebrow { color:#24558b; }
+html[data-theme="light"] .journey-timeline::before { background:#cbd5e1; }
+html[data-theme="light"] .journey-dot { border-color:#f5f7fb; }
+html[data-theme="light"] .journey-item.is-active .journey-card { background:#dbe4f1 !important; border-color:#6786b4; }
+html[data-theme="light"] .journey-item.is-active .journey-card :is(h2,p) { color:#17233b !important; }
+html[data-theme="light"] .linkedin-card__gallery-controls { background:#dbe4f1; }
+html[data-theme="light"] .linkedin-card__gallery-controls span,
+html[data-theme="light"] #linkedin-page-counter { color:#17233b; }
+/* Photo/video gallery stays dark to avoid changing the appearance of media. */
+
+/* Insights article surface: yellow in dark mode, neutral grey in light mode. */
+html[data-theme="light"] .blog-article { background:#e5e7eb; color:#17233b; }
+html[data-theme="light"] .blog-article :is(h1,h2,h3,p,li,strong),
+html[data-theme="light"] .blog-article .insights-body,
+html[data-theme="light"] .blog-article .insights-body :is(p,li) { color:#17233b; }
+html[data-theme="light"] .blog-article .insights-byline { color:#475569; }
+html[data-theme="light"] .blog-article .blog-signoff { border-color:#cbd5e1; }
+html[data-theme="light"] .insights-category { background:#e5e7eb; color:#17233b; border-color:#cbd5e1; }
+html[data-theme="light"] .insights-category[aria-pressed="true"] { background:#173e56; color:#fff; border-color:#173e56; }
+
+/* Inputs, normal body copy and shared page headings. Excludes button labels. */
+html[data-theme="light"] :is(.page-content,.section,.hero,.site-section) { color:#17233b; }
+html[data-theme="light"] :is(.page-content,.section,.hero,.site-section) > p,
+html[data-theme="light"] :is(.page-content,.section,.hero,.site-section) > div > p { color:#475569; }
+html[data-theme="light"] :is(input,textarea,select) { background:#fff; color:#17233b; border-color:#aab6c8; }
+
+/* Footer: keep text legible on the lighter footer surface. */
+html[data-theme="light"] .site-footer { background:var(--color-footer); color:#17233b; }
+html[data-theme="light"] .site-footer a { color:inherit; }
+
+/* Buttons and their text remain deliberately high-contrast, not inverted blindly. */
+html[data-theme="light"] :is(.site-button,.linkedin-follow) { color:#fff; }
+@media (max-width:900px) { .theme-toggle { margin-left:auto; } }
+
+/* October update: Services and Insights introductory descriptions.
+   Services uses an inline color, so override it explicitly. */
+html[data-theme="light"] .page-content > .section > h1 + p,
+html[data-theme="light"] .page-content .section > h1 + p,
+html[data-theme="light"] .blog-wrap > .blog-intro {
+  color: #334155 !important;
+}
+
+/* Contact: light form panel, legible labels and clear field boundaries. */
+html[data-theme="light"] .page-content .form-container {
+  background: #e5e7eb !important;
+  color: #17233b !important;
+  border: 1px solid #cbd5e1;
+}
+html[data-theme="light"] .page-content .form-container label {
+  color: #17233b !important;
+}
+html[data-theme="light"] .page-content .form-container :is(input, select, textarea) {
+  background: #ffffff !important;
+  color: #17233b !important;
+  border: 1px solid #94a3b8 !important;
+}
+html[data-theme="light"] .page-content .form-container :is(input, select, textarea)::placeholder {
+  color: #64748b;
+}
+html[data-theme="light"] .page-content .form-container :is(input, select, textarea):focus-visible {
+  outline: 2px solid #3456db;
+  outline-offset: 2px;
+}
+html[data-theme="light"] .page-content .form-container button[type="submit"] {
+  background: #3456db !important;
+  color: #ffffff !important;
+}
+
+/* References: actual link class in references.astro */
+html[data-theme="light"] a.company-house-link,
+html[data-theme="light"] a.company-house-link:visited,
+html[data-theme="light"] a.company-house-link:hover,
+html[data-theme="light"] a.company-house-link:focus-visible {
+  color: #17233b !important;
+  text-decoration-color: #17233b !important;
+}
