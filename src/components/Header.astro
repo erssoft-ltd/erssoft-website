@@ -1,6 +1,5 @@
 ---
 ---
-
 <header class="site-header">
   <div class="site-header__brand-theme">
     <a class="site-header__logo" href="/" aria-label="ErsSoft Limited home">
@@ -22,36 +21,48 @@
     <a href="/references/">References</a>
     <a href="/linkedin/">LinkedIn</a>
     <a href="/contact/">Contact</a>
-    <a href="https://portal.erssoft.co.uk/" target="_blank" rel="noopener noreferrer">
-      Client Portal
-    </a>
+    <a href="https://portal.erssoft.co.uk/" target="_blank" rel="noopener noreferrer">Client Portal</a>
   </nav>
 </header>
 
 <style>
-  /* Keep the existing logo and navigation styling. Place the theme icon over the brand name. */
-  .site-header__brand-theme { position: relative; flex: 0 0 auto; }
-  .site-header__brand-theme .site-header__logo { position: relative; }
+  .site-header__brand-theme {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+  .site-header__brand-theme .site-header__logo {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+  }
   .site-header__brand-theme .theme-toggle {
-    position: absolute;
-    top: -16px;
-    left: 54px;
-    width: calc(100% - 54px);
-    max-width: 140px;
-    height: 26px;
+    position: static;
+    flex: 0 0 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    margin: 0 0 0 2ch; /* Two character spaces after ErsSoft Limited */
+    padding: 0;
     border: 0;
+    border-radius: 50%;
     background: transparent;
     color: inherit;
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1;
     cursor: pointer;
-    z-index: 2;
+    z-index: 1;
+    touch-action: manipulation;
   }
   .site-header__brand-theme .theme-toggle__sun { display: none; }
-  html[data-theme="light"] .site-header__brand-theme .theme-toggle__sun { display: inline; }
-  html[data-theme="light"] .site-header__brand-theme .theme-toggle__moon { display: none; }
+  :global(html[data-theme="light"]) .site-header__brand-theme .theme-toggle__sun { display: inline; }
+  :global(html[data-theme="light"]) .site-header__brand-theme .theme-toggle__moon { display: none; }
   @media (max-width: 900px) {
-    .site-header__brand-theme .theme-toggle { margin-left: 0; }
+    .site-header__brand-theme .theme-toggle { margin-left: 2ch; }
   }
 </style>
 <script src="/js/theme.js" defer></script>
