@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175 206" role="img" aria-labelledby="uk-map-title uk-map-desc">
+<title id="uk-map-title">United Kingdom map</title>
+<desc id="uk-map-desc">A gold dot marks London, where ErsSoft Limited is registered.</desc>
+<g fill="#415777" stroke="#8292aa" stroke-width="0.8" stroke-linejoin="round"><path d="M 29.9,112.0 L 20.0,107.7 L 12.0,108.0 L 14.7,96.7 L 12.0,85.5 L 22.9,84.6 L 36.8,97.6 L 29.9,112.0 Z"/><path d="M 70.3,121.7 L 70.3,121.7 L 72.2,109.6 L 63.5,96.6 L 63.3,96.3 L 47.5,92.6 L 44.4,87.0 L 49.1,77.6 L 44.8,71.8 L 37.8,81.7 L 37.1,61.5 L 30.5,50.8 L 35.2,29.1 L 45.3,12.1 L 55.7,13.8 L 71.4,12.0 L 57.5,34.7 L 70.8,31.8 L 85.0,31.9 L 81.6,49.0 L 69.9,67.8 L 83.4,69.2 L 84.4,71.4 L 96.0,96.1 L 104.9,99.5 L 112.9,123.4 L 116.6,131.7 L 132.4,135.7 L 130.8,149.1 L 124.2,155.3 L 129.4,166.1 L 117.7,177.1 L 100.3,176.9 L 78.1,182.7 L 72.0,178.5 L 63.4,188.4 L 51.4,186.0 L 42.3,194.0 L 35.4,189.8 L 54.4,167.8 L 66.1,163.2 L 66.0,163.2 L 45.7,159.7 L 42.0,151.4 L 55.6,144.9 L 48.4,133.6 L 50.9,119.8 L 70.3,121.7 Z"/></g>
+<circle cx="108.8" cy="161.5" r="8" fill="#f3c35d" opacity="0.22"/>
+<circle cx="108.8" cy="161.5" r="3.8" fill="#e7ad33" stroke="#fff" stroke-width="1.2"/>
+</svg>
