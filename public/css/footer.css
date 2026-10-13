@@ -51,6 +51,6 @@
 }
 @media (max-width: 900px) {
   .site-footer img[src*="uk-london.svg"] {
-    margin-right: 0 !important;
+    margin-right: -6px !important;
   }
 }
