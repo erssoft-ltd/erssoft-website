@@ -1,7 +1,223 @@
+
+bu data deletion 20. numarali madde olsa 20.numarali madde 21. olsa 21. numarali madde 22. olsa daha iyi olmaz mi
+Evet, bence de daha mantıklı. Data Deletion Instructions'ın 20. madde olması, veri koruma hakları ve veri saklama konularının ardından gelmesi açısından daha düzenli.
+
+Son üç bölüm şöyle olacak:
+
+20. Data Deletion Instructions (yeni bölüm)
+
+21. Changes to This Privacy Policy (eski 20)
+
+22. Contact Us (eski 21)
+
+Mevcut 1–19. maddeler ve TikTok, Facebook, Instagram, WhatsApp ile ilgili bütün açıklamalar aynen korunacak. Veri silme bölümünün id="data-deletion" bağlantısı da değişmeyecek.
+
+Düzenlemeyi yaptım. Güncellenmiş tam dosya hazır:
+
+privacy_final.astro dosyasını indir
+
+Dosyayı src/pages/privacy.astro olarak kaydet ve şu komutları çalıştır:
+
+
+npm run build
+git add src/pages/privacy.astro
+git commit -m "Reorder privacy policy data deletion section"
+git push origin main
+
+Meta için kullanacağımız adres değişmiyor:
+
+https://www.erssoft.co.uk/privacy/#data-deletion
+
+Diğer tüm bölümlerin içeriği korunmuştur.
+
+
+Header.astro
+HTML
+Header.astro da menu desktopta oldugu gibi kalacak. mobilde sagda ve solda iki hamburger menu olsa soldaki hamburger de munudeki itemlar olsa, sagdaki hambugerde contact bilgileri olsa, adres, mail, telefon ve linkedin follow up linki nasil olur
+Bence ErsSoft web sitesi için iyi bir mobil tasarım olur. Desktop header tamamen aynı kalır, yalnızca mobil görünümü değiştiririz.
+
+Mobilde şu düzeni öneriyorum:
+
+Menü
+
+ErsSoft Limited
+
+İletişim
+
+Sol menü
+
+Home
+
+Services
+
+About
+
+Insights
+
+Our Journey
+
+References
+
+LinkedIn
+
+Contact
+
+Client Portal
+
+Sağ menü
+
+International House, London E16 2DQ
+
+info@erssoft.co.uk
+
++44 7518 630370
+
+Follow us on LinkedIn
+
+Şematik görünüm: Gerçekte iki panel aynı anda değil, ilgili hamburger simgesine basıldığında açılacak.
+İki panelin birbirinden bağımsız çalışmasını, dışarıya dokununca kapanmasını ve mobilde sayfanın yatay kaymamasını öneriyorum.
+
+Yüklediğin Header.astro dosyasında masaüstü menüsü ve tema değiştirme butonu bulunuyor. Ancak mobil düzeni etkileyen kuralların bir kısmı header.css dosyasında olabilir.
+
+header.css dosyasını da yükler misin? İki dosyayı birlikte düzenleyerek desktop görünümünü bozmadan, mobilde çift hamburger menülü nihai sürümü hazırlayalım.
+
+
+header(1).css
+Code
+Ersin, Header.astro ve header.css dosyalarını inceleyerek istediğin çift hamburger menülü mobil tasarımı hazırladım.
+
+Desktop menüsünün mevcut görünümü korunuyor. Değişiklikler yalnızca 900px ve altındaki ekranlarda uygulanıyor.
+
+Güncellenmiş Header.astro
+
+Güncellenmiş header.css
+
+Mobilde nasıl çalışacak?
+Sol hamburger: Home, Services, About, Insights, Our Journey, References, LinkedIn, Contact ve Client Portal.
+
+Orta alan: ErsSoft logosu, şirket adı ve mevcut açık/koyu tema butonu.
+
+Sağ hamburger: Şirket adresi, e-posta, telefon ve Follow us on LinkedIn bağlantısı.
+
+Menüler birbirinden bağımsız çalışıyor. Birini açınca diğeri kapanıyor. Menü dışına dokununca veya Escape tuşuna basınca da kapanıyor.
+
+Dosyaları yerleştir
+İndirdiğin dosyaları şu şekilde yeniden adlandır:
+
+İndirilen dosya
+
+Projedeki konum
+
+Header_mobile.astro
+
+src/components/Header.astro
+
+header_mobile.css
+
+public/css/header.css
+
+Git komutları
+
+npm run build
+git add src/components/Header.astro public/css/header.css
+git commit -m "Add dual mobile navigation and contact menus"
+git push origin main
+
+Not: Masaüstü menüsünün içeriğini, sırasını ve temel CSS değerlerini değiştirmedim. Mobil görünüm için yeni kurallar ekledim.
+
+
+footer.css
+Code
+
+Footer.astro
+HTML
+sagdaki hamburgerde "ErsSoft Limited
+Registered in England and Wales · Company No: 13391504
+International House, 12 Constance Street, London,
+United Kingdom, E16 2DQ
+Email: info@erssoft.co.uk · Phone: +44 7518 630370 
+Companies House | LinkedIn
+Terms of Service  ·  Privacy Policy  ·  Cookie Policy " bu bilgiler olsun sagdaki menude bunlar footerda var. zemini uk haritasi olsun
+
+…
+İstediğin şekilde sağ hamburger menüsünü güncelledim. Footer'daki şirket bilgileri ve bağlantılar aynı şekilde kullanıldı. Arka plana da footer'da bulunan İngiltere haritasını (/assets/uk-london.svg) yerleştirdim.
+
+Güncellenmiş Header.astro
+
+Güncellenmiş header.css
+
+Mobil tasarım:
+
+Sol hamburger: Mevcut navigasyon menüsü.
+
+Orta: ErsSoft logosu, şirket adı ve tema butonu.
+
+Sağ hamburger: Şirket kayıt bilgileri, adres, e-posta, telefon, Companies House, LinkedIn ve üç yasal bağlantı.
+
+Sağ menünün zemini: İngiltere haritası, yazıların okunabilmesi için koyu ve yarı saydam bir katmanla.
+
+Desktop header ve mevcut footer değiştirilmedi.
+
+Git komutları
+Dosyaları sırasıyla src/components/Header.astro ve public/css/header.css konumlarına yerleştirdikten sonra:
+
+
+npm run build
+git add src/components/Header.astro public/css/header.css
+git commit -m "Update mobile contact menu with footer details and UK map"
+git push origin main
+
+
+
+
 .site-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 64px;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
 .site-header__logo{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:600;color:inherit;text-decoration:none;white-space:nowrap}
 .site-header__logo img{height:42px;width:auto}
 .site-header__nav{display:flex;align-items:center;flex-wrap:wrap;gap:12px 32px}
 .site-header__nav a{color:#fff;text-decoration:none;font-size:14px;opacity:.8}
 .site-header__nav a:hover,.site-header__nav a:focus-visible{opacity:1}
-@media(max-width:900px){.site-header{padding:20px 24px;flex-wrap:wrap}.site-header__nav{gap:12px 20px}}
+.site-header__mobile-toggle,.site-header__mobile-panel{display:none}
+@media(max-width:900px){
+  .site-header{position:relative;display:grid;grid-template-columns:38px minmax(0,1fr) 38px;align-items:center;gap:8px;padding:16px 14px;flex-wrap:nowrap}
+  .site-header__nav{display:none}
+  .site-header__brand-theme{justify-self:center;min-width:0}
+  .site-header__logo{gap:6px;font-size:clamp(12px,3.6vw,18px);white-space:nowrap}
+  .site-header__logo img{height:32px}
+  .site-header__brand-theme .theme-toggle{margin-left:6px;flex-basis:28px;width:28px;height:28px;font-size:19px}
+  .site-header__mobile-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:38px;height:38px;padding:7px;background:transparent;border:1px solid currentColor;border-radius:7px;color:inherit;cursor:pointer}
+  .site-header__mobile-toggle span{display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
+  .site-header__mobile-toggle--left{grid-column:1;grid-row:1}
+  .site-header__brand-theme{grid-column:2;grid-row:1}
+  .site-header__mobile-toggle--right{grid-column:3;grid-row:1}
+  .site-header__mobile-panel:not([hidden]){display:flex;position:absolute;top:100%;left:14px;z-index:1000;flex-direction:column;gap:0;width:min(270px,calc(100vw - 28px));box-sizing:border-box;padding:10px 0;background:#0b1020;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:9px;box-shadow:0 10px 25px rgba(0,0,0,.3)}
+  .site-header__mobile-panel--contact:not([hidden]){left:auto;right:14px;width:min(310px,calc(100vw - 28px));padding:14px 16px;gap:12px}
+  .site-header__mobile-panel a{display:block;padding:10px 16px;color:inherit;text-decoration:none;font-size:14px;overflow-wrap:anywhere}
+  .site-header__mobile-panel--contact a{padding:0}
+  .site-header__mobile-panel a:hover,.site-header__mobile-panel a:focus-visible{text-decoration:underline}
+  .site-header__mobile-panel strong{font-size:15px}
+  .site-header__mobile-panel address{font-size:13px;font-style:normal;line-height:1.6}
+}
+
+/* Right mobile menu: company details over the existing UK map asset. */
+@media (max-width:900px){
+  .site-header__mobile-panel--contact:not([hidden]){
+    display:block;
+    padding:18px 16px;
+    gap:0;
+    background-color:#080c18;
+    background-image:linear-gradient(rgba(8,12,24,.82),rgba(8,12,24,.82)),url('/assets/uk-london.svg');
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:auto 88%;
+    color:#fff;
+    max-height:min(75vh,560px);
+    overflow-y:auto;
+  }
+  .site-header__contact-details{position:relative;z-index:1;font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+  .site-header__contact-details strong{display:block;font-size:14px;margin-bottom:8px}
+  .site-header__contact-details p{margin:0 0 12px}
+  .site-header__contact-details p:last-child{margin-bottom:0}
+  .site-header__contact-details a{display:inline;padding:0;color:#d7e7ff;font-size:inherit;text-decoration:underline;text-underline-offset:2px}
+  .site-header__contact-legal{line-height:1.8}
+}
+
