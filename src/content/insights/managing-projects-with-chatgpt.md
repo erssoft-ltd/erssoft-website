@@ -7,7 +7,7 @@ author: "ErsSoft Limited"
 ---
 
 
-![What I Learned from Managing Projects with ChatGPT](/images/insights/managing-projects-with-chatgpt.png)
+![What I Learned from Managing Projects with ChatGPT](/images/insights/managing-projects-with-chatgpt.webp)
 
 I have been working with ChatGPT for a long time. I have used it for small tasks, websites and some larger software projects.
 

@@ -1,9 +1,7 @@
 ---
 ---
 <header class="site-header">
-  <button class="site-header__mobile-toggle site-header__mobile-toggle--left" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-navigation" data-mobile-toggle="navigation">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="site-header__mobile-toggle site-header__mobile-toggle--left" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-navigation" data-mobile-toggle="navigation"><span></span><span></span><span></span></button>
 
   <div class="site-header__brand-theme">
     <a class="site-header__logo" href="/" aria-label="ErsSoft Limited home">
@@ -27,89 +25,114 @@
     <a href="/contact/">Contact</a>
     <a href="https://portal.erssoft.co.uk/" target="_blank" rel="noopener noreferrer">Client Portal</a>
   </nav>
-
-  <button class="site-header__mobile-toggle site-header__mobile-toggle--right" type="button" aria-label="Open contact information" aria-expanded="false" aria-controls="mobile-contact" data-mobile-toggle="contact">
-    <span></span><span></span><span></span>
-  </button>
-
-  <nav class="site-header__mobile-panel" id="mobile-navigation" aria-label="Mobile navigation" hidden>
-    <a href="/">Home</a>
-    <a href="/services/">Services</a>
-    <a href="/about/">About</a>
-    <a href="/insights/">Insights</a>
-    <a href="/our-journey/">Our Journey</a>
-    <a href="/references/">References</a>
-    <a href="/linkedin/">LinkedIn</a>
+  <button class="site-header__mobile-toggle site-header__mobile-toggle--right" type="button" aria-label="Open company information" aria-expanded="false" aria-controls="mobile-contact" data-mobile-toggle="contact"><span></span><span></span><span></span></button>
+  <nav id="mobile-navigation" class="site-header__mobile-panel site-header__mobile-navigation" aria-label="Mobile navigation" hidden>
+    <a href="/">Home</a><a href="/services/">Services</a><a href="/about/">About</a>
+    <a href="/insights/">Insights</a><a href="/our-journey/">Our Journey</a>
+    <a href="/references/">References</a><a href="/linkedin/">LinkedIn</a>
     <a href="/contact/">Contact</a>
     <a href="https://portal.erssoft.co.uk/" target="_blank" rel="noopener noreferrer">Client Portal</a>
   </nav>
-
-  <div class="site-header__mobile-panel site-header__mobile-panel--contact" id="mobile-contact" aria-label="Company information" hidden>
-    <div class="site-header__contact-details">
-      <strong class="site-header__contact-title">ErsSoft Limited</strong>
-      <p class="site-header__contact-registration">Registered in England and Wales<br>Company No: 13391504</p>
-      <div class="site-header__contact-group">
-        <span class="site-header__contact-label">REGISTERED OFFICE</span>
-        <address>International House, 12 Constance Street<br>London, United Kingdom, E16 2DQ</address>
+  <section id="mobile-contact" class="site-header__mobile-panel site-header__mobile-contact" aria-label="Company information" hidden>
+    <div class="site-header__contact-content">
+      <div class="site-header__contact-section">
+        <strong class="site-header__company-name">ErsSoft Limited</strong>
+        <p>Registered in England and Wales<br />Company No: 13391504</p>
       </div>
-      <div class="site-header__contact-group">
-        <span class="site-header__contact-label">CONTACT</span>
-        <a href="mailto:info@erssoft.co.uk">info@erssoft.co.uk</a>
-        <a href="tel:+447518630370">+44 7518 630370</a>
+      <div class="site-header__contact-section">
+        <h2>REGISTERED OFFICE</h2>
+        <address>International House,<br />12 Constance Street,<br />London, United Kingdom,<br />E16 2DQ</address>
       </div>
-      <div class="site-header__contact-group site-header__contact-social">
+      <div class="site-header__contact-section">
+        <p>Email: <a href="mailto:info@erssoft.co.uk">info@erssoft.co.uk</a></p>
+        <p>Phone: <a href="tel:+447518630370">+44 7518 630370</a></p>
+      </div>
+      <div class="site-header__contact-section site-header__contact-external">
         <a href="https://find-and-update.company-information.service.gov.uk/company/13391504" target="_blank" rel="noopener noreferrer">Companies House</a>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true">|</span>
         <a href="https://www.linkedin.com/company/erssoft-limited" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
-      <div class="site-header__contact-legal">
+      <div class="site-header__contact-section site-header__contact-policies">
+        <h2>POLICIES</h2>
         <a href="/terms/">Terms of Service</a>
-        <span aria-hidden="true">·</span>
         <a href="/privacy/">Privacy Policy</a>
-        <span aria-hidden="true">·</span>
         <a href="/cookies/">Cookie Policy</a>
       </div>
     </div>
-  </div>
+  </section>
 </header>
 
 <style>
-  .site-header__brand-theme { display:flex;align-items:center;gap:0;flex:0 0 auto;min-width:0; }
-  .site-header__brand-theme .site-header__logo { display:inline-flex;align-items:center;flex:0 0 auto; }
-  .site-header__brand-theme .theme-toggle { position:static;flex:0 0 34px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin:0 0 0 2ch;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;font-size:22px;line-height:1;cursor:pointer;z-index:1;touch-action:manipulation; }
-  .site-header__brand-theme .theme-toggle__sun { display:none; }
-  :global(html[data-theme="light"]) .site-header__brand-theme .theme-toggle__sun { display:inline; }
-  :global(html[data-theme="light"]) .site-header__brand-theme .theme-toggle__moon { display:none; }
-  @media (max-width:900px) { .site-header__brand-theme .theme-toggle { margin-left:2ch; } }
+  .site-header__brand-theme {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 0 0 auto;
+    min-width: 0;
+  }
+  .site-header__brand-theme .site-header__logo {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+  }
+  .site-header__brand-theme .theme-toggle {
+    position: static;
+    flex: 0 0 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    margin: 0 0 0 2ch; /* Two character spaces after ErsSoft Limited */
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+    touch-action: manipulation;
+  }
+  .site-header__brand-theme .theme-toggle__sun { display: none; }
+  :global(html[data-theme="light"]) .site-header__brand-theme .theme-toggle__sun { display: inline; }
+  :global(html[data-theme="light"]) .site-header__brand-theme .theme-toggle__moon { display: none; }
+  @media (max-width: 900px) {
+    .site-header__brand-theme .theme-toggle { margin-left: 2ch; }
+  }
 </style>
 <script src="/js/theme.js" defer></script>
+
 <script>
   const header = document.querySelector('.site-header');
   if (header) {
-    const toggles = Array.from(header.querySelectorAll('[data-mobile-toggle]'));
+    const buttons = Array.from(header.querySelectorAll('[data-mobile-toggle]'));
     const panels = {
       navigation: header.querySelector('#mobile-navigation'),
       contact: header.querySelector('#mobile-contact'),
     };
-    const closePanels = () => {
-      toggles.forEach(button => {
-        button.setAttribute('aria-expanded', 'false');
-        button.setAttribute('aria-label', button.dataset.mobileToggle === 'navigation' ? 'Open navigation menu' : 'Open contact information');
-      });
+    const closeMenus = () => {
+      buttons.forEach(button => button.setAttribute('aria-expanded', 'false'));
       Object.values(panels).forEach(panel => { if (panel) panel.hidden = true; });
     };
-    toggles.forEach(button => button.addEventListener('click', () => {
-      const target = button.dataset.mobileToggle;
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const name = button.dataset.mobileToggle;
       const wasOpen = button.getAttribute('aria-expanded') === 'true';
-      closePanels();
-      if (!wasOpen && panels[target]) {
-        panels[target].hidden = false;
+      closeMenus();
+      if (!wasOpen && panels[name]) {
+        panels[name].hidden = false;
         button.setAttribute('aria-expanded', 'true');
-        button.setAttribute('aria-label', target === 'navigation' ? 'Close navigation menu' : 'Close contact information');
       }
     }));
-    document.addEventListener('click', event => { if (!header.contains(event.target)) closePanels(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape') closePanels(); });
-    window.addEventListener('resize', () => { if (window.innerWidth > 900) closePanels(); });
+    document.addEventListener('click', event => {
+      if (!header.contains(event.target)) closeMenus();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeMenus();
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) closeMenus();
+    });
   }
 </script>

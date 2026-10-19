@@ -4,83 +4,79 @@
 .site-header__nav{display:flex;align-items:center;flex-wrap:wrap;gap:12px 32px}
 .site-header__nav a{color:#fff;text-decoration:none;font-size:14px;opacity:.8}
 .site-header__nav a:hover,.site-header__nav a:focus-visible{opacity:1}
-.site-header__mobile-toggle,.site-header__mobile-panel{display:none}
-@media(max-width:900px){
-  .site-header{position:relative;display:grid;grid-template-columns:38px minmax(0,1fr) 38px;align-items:center;gap:8px;padding:16px 14px;flex-wrap:nowrap}
-  .site-header__nav{display:none}
-  .site-header__brand-theme{justify-self:center;min-width:0}
-  .site-header__logo{gap:6px;font-size:clamp(12px,3.6vw,18px);white-space:nowrap}
-  .site-header__logo img{height:32px}
-  .site-header__brand-theme .theme-toggle{margin-left:6px;flex-basis:28px;width:28px;height:28px;font-size:19px}
-  .site-header__mobile-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:38px;height:38px;padding:7px;background:transparent;border:1px solid currentColor;border-radius:7px;color:inherit;cursor:pointer}
-  .site-header__mobile-toggle span{display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
-  .site-header__mobile-toggle--left{grid-column:1;grid-row:1}
-  .site-header__brand-theme{grid-column:2;grid-row:1}
-  .site-header__mobile-toggle--right{grid-column:3;grid-row:1}
-  .site-header__mobile-panel:not([hidden]){display:flex;position:absolute;top:100%;left:14px;z-index:1000;flex-direction:column;gap:0;width:min(270px,calc(100vw - 28px));box-sizing:border-box;padding:10px 0;background:#0b1020;color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:9px;box-shadow:0 10px 25px rgba(0,0,0,.3)}
-  .site-header__mobile-panel--contact:not([hidden]){left:auto;right:14px;width:min(310px,calc(100vw - 28px));padding:14px 16px;gap:12px}
-  .site-header__mobile-panel a{display:block;padding:10px 16px;color:inherit;text-decoration:none;font-size:14px;overflow-wrap:anywhere}
-  .site-header__mobile-panel--contact a{padding:0}
-  .site-header__mobile-panel a:hover,.site-header__mobile-panel a:focus-visible{text-decoration:underline}
-  .site-header__mobile-panel strong{font-size:15px}
-  .site-header__mobile-panel address{font-size:13px;font-style:normal;line-height:1.6}
-}
+@media(max-width:900px){.site-header{padding:20px 24px;flex-wrap:wrap}.site-header__nav{gap:12px 20px}}
 
-/* Right mobile menu: company details over the existing UK map asset. */
-@media (max-width:900px){
-  .site-header__mobile-panel--contact:not([hidden]){
-    display:block;
-    padding:18px 16px;
-    gap:0;
-    background-color:#080c18;
-    background-image:linear-gradient(rgba(8,12,24,.82),rgba(8,12,24,.82)),url('/assets/uk-london.svg');
-    background-repeat:no-repeat;
-    background-position:center center;
-    background-size:auto 88%;
-    color:#fff;
-    max-height:min(75vh,560px);
-    overflow-y:auto;
-  }
-  .site-header__contact-details{position:relative;z-index:1;font-size:12px;line-height:1.55;overflow-wrap:anywhere}
-  .site-header__contact-details strong{display:block;font-size:14px;margin-bottom:8px}
-  .site-header__contact-details p{margin:0 0 12px}
-  .site-header__contact-details p:last-child{margin-bottom:0}
-  .site-header__contact-details a{display:inline;padding:0;color:#d7e7ff;font-size:inherit;text-decoration:underline;text-underline-offset:2px}
-  .site-header__contact-legal{line-height:1.8}
-}
+/* Mobile-only additions. All original desktop rules above are unchanged. */
+.site-header__mobile-toggle,
+.site-header__mobile-panel { display:none; }
 
-/* Compact contact card, with UK map watermark and full theme support. */
-@media (max-width:900px){
-  .site-header__mobile-panel--contact:not([hidden]){
-    padding:16px 17px;
+@media (max-width:900px) {
+  .site-header {
+    position:relative;
+    display:grid;
+    grid-template-columns:38px minmax(0,1fr) 38px;
+    align-items:center;
+    gap:8px;
+    padding:16px 12px;
+    flex-wrap:nowrap;
+  }
+  .site-header__nav { display:none; }
+  .site-header__brand-theme { grid-column:2;grid-row:1;justify-self:center;min-width:0; }
+  .site-header__logo { gap:6px;font-size:clamp(12px,3.6vw,18px); }
+  .site-header__logo img { height:32px; }
+  .site-header__brand-theme .theme-toggle {
+    margin-left:6px;flex:0 0 28px;width:28px;height:28px;font-size:19px;
+  }
+  .site-header__mobile-toggle {
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:5px;width:38px;height:38px;padding:7px;
+    background:transparent;border:1px solid currentColor;border-radius:7px;
+    color:inherit;cursor:pointer;
+  }
+  .site-header__mobile-toggle span { display:block;width:20px;height:2px;background:currentColor;border-radius:2px; }
+  .site-header__mobile-toggle--left { grid-column:1;grid-row:1; }
+  .site-header__mobile-toggle--right { grid-column:3;grid-row:1; }
+  .site-header__mobile-panel:not([hidden]) {
+    display:block;position:absolute;top:100%;left:12px;z-index:1000;
+    width:min(280px,calc(100vw - 24px));box-sizing:border-box;
+    background:#0b1020;color:#f6f8ff;
+    border:1px solid rgba(255,255,255,.17);border-radius:10px;
+    box-shadow:0 12px 28px rgba(0,0,0,.3);
+    max-height:calc(100dvh - 85px);overflow-y:auto;
+  }
+  .site-header__mobile-navigation:not([hidden]) { padding:8px 0; }
+  .site-header__mobile-navigation a {
+    display:block;padding:10px 17px;font-size:14px;color:inherit;text-decoration:none;
+  }
+  .site-header__mobile-navigation a:hover,
+  .site-header__mobile-navigation a:focus-visible { text-decoration:underline; }
+  .site-header__mobile-contact:not([hidden]) {
+    left:auto;right:12px;width:min(330px,calc(100vw - 24px));padding:18px 20px;
+    /* UK map is behind the text, not beside or above it. */
     background-color:#080c18;
-    background-image:linear-gradient(rgba(8,12,24,.89),rgba(8,12,24,.89)),url('/assets/uk-london.svg');
-    background-position:center center;
-    background-size:auto 86%;
-    background-repeat:no-repeat;
-    color:#f4f6ff;
+    background-image:linear-gradient(rgba(8,12,24,.84),rgba(8,12,24,.84)),url('/assets/uk-london.svg');
+    background-position:center center;background-repeat:no-repeat;background-size:auto 82%;
   }
-  .site-header__contact-details{font-size:12px;line-height:1.45}
-  .site-header__contact-title{font-size:16px!important;line-height:1.25;margin:0 0 3px!important}
-  .site-header__contact-registration{font-size:10.5px;opacity:.78;margin:0 0 12px!important;line-height:1.45}
-  .site-header__contact-group{margin:0 0 11px}
-  .site-header__contact-label{display:block;margin-bottom:3px;font-size:9px;font-weight:700;letter-spacing:1.1px;opacity:.75}
-  .site-header__contact-group address{font-style:normal;font-size:12px;line-height:1.45}
-  .site-header__contact-group>a{display:block;width:fit-content;margin:2px 0;font-size:12px}
-  .site-header__contact-social{display:flex;align-items:center;flex-wrap:wrap;gap:7px;padding-top:9px;border-top:1px solid rgba(255,255,255,.17)}
-  .site-header__contact-social>a{display:inline;margin:0}
-  .site-header__contact-legal{display:flex;flex-wrap:wrap;align-items:center;gap:5px 7px;padding-top:9px;border-top:1px solid rgba(255,255,255,.17);line-height:1.5}
-  .site-header__contact-legal a{font-size:11px}
-  html[data-theme="light"] .site-header__mobile-panel:not([hidden]){
-    background-color:#fff;
-    color:#1c2940;
-    border-color:rgba(23,39,65,.18);
-    box-shadow:0 10px 25px rgba(17,34,54,.14);
+  .site-header__contact-content { position:relative;z-index:1;font-size:12px;line-height:1.5;overflow-wrap:anywhere; }
+  .site-header__contact-section { padding:0 0 13px;margin:0 0 13px;border-bottom:1px solid rgba(255,255,255,.26); }
+  .site-header__contact-section:last-child { margin-bottom:0; }
+  .site-header__company-name { display:block;font-size:17px;margin-bottom:5px; }
+  .site-header__contact-section p { margin:0; }
+  .site-header__contact-section h2 { margin:0 0 8px;font-size:11px;letter-spacing:1.2px;color:#e6c17c;font-weight:700; }
+  .site-header__contact-section address { font-style:normal;line-height:1.6; }
+  .site-header__contact-section a { color:inherit;text-decoration:none; }
+  .site-header__contact-section a:hover,
+  .site-header__contact-section a:focus-visible { text-decoration:underline; }
+  .site-header__contact-external { display:flex;align-items:center;flex-wrap:wrap;gap:8px; }
+  .site-header__contact-policies a { display:block;padding:4px 0; }
+  html[data-theme="light"] .site-header__mobile-panel:not([hidden]) {
+    background-color:#fff;color:#18253a;
+    border-color:rgba(20,40,65,.2);
+    box-shadow:0 12px 28px rgba(20,40,65,.14);
   }
-  html[data-theme="light"] .site-header__mobile-panel--contact:not([hidden]){
-    background-image:linear-gradient(rgba(255,255,255,.87),rgba(255,255,255,.87)),url('/assets/uk-london.svg');
+  html[data-theme="light"] .site-header__mobile-contact:not([hidden]) {
+    background-image:linear-gradient(rgba(255,255,255,.85),rgba(255,255,255,.85)),url('/assets/uk-london.svg');
   }
-  html[data-theme="light"] .site-header__mobile-panel a{color:#1c2940}
-  html[data-theme="light"] .site-header__contact-social,
-  html[data-theme="light"] .site-header__contact-legal{border-color:rgba(23,39,65,.17)}
+  html[data-theme="light"] .site-header__contact-section { border-bottom-color:rgba(20,40,65,.24); }
+  html[data-theme="light"] .site-header__contact-section h2 { color:#9b6a20; }
 }

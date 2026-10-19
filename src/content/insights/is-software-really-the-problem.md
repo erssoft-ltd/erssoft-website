@@ -6,7 +6,7 @@ category: "ERP Consulting"
 author: "ErsSoft Limited"
 ---
 
-![Is Software Really the Problem in Your Company?](/images/insights/is-software-really-the-problem.png)
+![Is Software Really the Problem in Your Company?](/images/insights/is-software-really-the-problem.webp)
 
 Imagine a company.
 

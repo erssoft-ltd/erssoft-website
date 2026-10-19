@@ -6,7 +6,7 @@ date: 2026-09-28
 author: "ErsSoft Limited"
 ---
 
-![JD Edwards EnterpriseOne Techno-Functional Approach – From Business Need to JDE Solution](/images/insights/jde-techno-functional.png)
+![JD Edwards EnterpriseOne Techno-Functional Approach – From Business Need to JDE Solution](/images/insights/jde-techno-functional.webp)
 
 A successful JD Edwards EnterpriseOne project is not only about making the system work. It is also about understanding business processes and finding the right solutions within JD Edwards.
 

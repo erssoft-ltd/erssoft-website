@@ -6,7 +6,7 @@ category: "Data & Analytics"
 author: "ErsSoft Limited"
 ---
 
-![Sometimes We Don't Lose Technology, We Lose Time](/images/insights/data-analytics-idea-2006.png)
+![Sometimes We Don't Lose Technology, We Lose Time](/images/insights/data-analytics-idea-2006.webp)
 
 It was 2006.
 

@@ -6,7 +6,7 @@ category: "Integration"
 author: "ErsSoft Limited"
 ---
 
-![Does Your Company Really Need Another Software System?](/images/insights/erp-integration-dashboard.png)
+![Does Your Company Really Need Another Software System?](/images/insights/erp-integration-dashboard.webp)
 
 As a company grows, different departments may ask for new software.
 
