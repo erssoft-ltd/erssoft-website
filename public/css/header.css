@@ -51,7 +51,7 @@
   .site-header__mobile-navigation a:hover,
   .site-header__mobile-navigation a:focus-visible { text-decoration:underline; }
   .site-header__mobile-contact:not([hidden]) {
-    left:auto;right:12px;width:150px;padding:18px 10px;
+    left:auto;right:12px;width:200px;padding:18px 10px;
     /* UK map is behind the text, not beside or above it. */
     background-color:#080c18;
     background-image:linear-gradient(rgba(8,12,24,.84),rgba(8,12,24,.84)),url('/assets/uk-london.svg');
