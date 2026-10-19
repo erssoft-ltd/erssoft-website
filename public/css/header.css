@@ -44,14 +44,14 @@
     box-shadow:0 12px 28px rgba(0,0,0,.3);
     max-height:calc(100dvh - 85px);overflow-y:auto;
   }
-  .site-header__mobile-navigation:not([hidden]) { width:200px; padding:8px 0; }
+  .site-header__mobile-navigation:not([hidden]) { width:225px; padding:8px 0; }
   .site-header__mobile-navigation a {
     display:block;padding:10px 17px;font-size:14px;color:inherit;text-decoration:none;
   }
   .site-header__mobile-navigation a:hover,
   .site-header__mobile-navigation a:focus-visible { text-decoration:underline; }
   .site-header__mobile-contact:not([hidden]) {
-    left:auto;right:12px;width:200px;padding:18px 10px;
+    left:auto;right:12px;width:225px;padding:18px 10px;
     /* UK map is behind the text, not beside or above it. */
     background-color:#080c18;
     background-image:linear-gradient(rgba(8,12,24,.84),rgba(8,12,24,.84)),url('/assets/uk-london.svg');
