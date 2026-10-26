@@ -94,7 +94,18 @@
       images.unshift(imageUrl);
     }
 
+    if (typeof post.id === "string") {
+    const match = post.id.match(/^urn:li:(?:share|ugcPost):(\d+)$/);
+
+    if (match) {
+      const localImage = `/images/linkedin/${match[1]}.webp`;
+
+      images.unshift(localImage);
+    }
+  }
+
     return {
+      id: post.id ?? null,
       text: formatLinkedInText(rawText),
 
       date: formatDate(
@@ -115,14 +126,29 @@
     };
   }
 
-  function createImage(url) {
+  function createImage(url, fallbackUrl = null) {
     const image = document.createElement("img");
 
     image.className = "linkedin-card__image";
-    image.src = url;
     image.alt = "ERSSOFT LinkedIn post image";
     image.loading = "lazy";
     image.decoding = "async";
+
+    image.onerror = () => {
+      if (fallbackUrl && image.src !== fallbackUrl) {
+        image.onerror = () => {
+          image.onerror = null;
+          image.style.display = "none";
+        };
+
+        image.src = fallbackUrl;
+      } else {
+        image.onerror = null;
+        image.style.display = "none";
+      }
+    };
+
+    image.src = url;
 
     return image;
   }
@@ -133,7 +159,7 @@
 
     let index = 0;
 
-    const image = createImage(images[0]);
+    const image = createImage(images[0], images[1] ?? null);
     gallery.appendChild(image);
 
     if (images.length > 1) {
