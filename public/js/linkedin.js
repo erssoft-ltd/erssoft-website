@@ -8,6 +8,7 @@
 
   const API_URL = "/api/linkedin/posts";
   const PAGE_SIZE = 3;
+  const LOCAL_IMAGE_PATH = "/images/linkedin/";
 
   const grid = document.getElementById("linkedin-posts");
   const status = document.getElementById("linkedin-status");
@@ -16,8 +17,10 @@
   const next = document.getElementById("linkedin-next");
   const counter = document.getElementById("linkedin-page-counter");
 
-  if (!grid || !status || !pagination ||
-      !previous || !next || !counter) return;
+  if (
+    !grid || !status || !pagination ||
+    !previous || !next || !counter
+  ) return;
 
   const companyUrl =
     "https://www.linkedin.com/company/77574975/";
@@ -47,9 +50,9 @@
     if (typeof value !== "string") return "";
 
     return value
-      .replace(/\{hashtag\\?\|([^}]+)\}/gi, "$1")
-      .replace(/\\+#\|/g, "#")
-      .replace(/#\|/g, "#")
+      .replace(/\\?\{hashtag\\?\|([^}]+)\}/gi, "$1")
+      .replace(/\\+#\\?\|/g, "#")
+      .replace(/#\\?\|/g, "#")
       .replace(/\\+#/g, "#")
       .replace(/\r\n/g, "\n")
       .replace(/\n{3,}/g, "\n\n")
@@ -71,6 +74,16 @@
     }
   }
 
+  function getPostId(value) {
+    if (typeof value !== "string") return null;
+
+    const match = value.match(
+      /^urn:li:(?:share|ugcPost):(\d+)$/
+    );
+
+    return match ? match[1] : null;
+  }
+
   function normalisePost(post) {
     const commentary = post.commentary;
 
@@ -82,7 +95,7 @@
           post.content ??
           "";
 
-    const images = Array.isArray(post.images)
+    const originalImages = Array.isArray(post.images)
       ? post.images.map(safeUrl).filter(Boolean)
       : [];
 
@@ -90,22 +103,32 @@
       post.imageUrl ?? post.image
     );
 
-    if (imageUrl && !images.includes(imageUrl)) {
-      images.unshift(imageUrl);
+    if (imageUrl && !originalImages.includes(imageUrl)) {
+      originalImages.unshift(imageUrl);
     }
 
-    if (typeof post.id === "string") {
-    const match = post.id.match(/^urn:li:(?:share|ugcPost):(\d+)$/);
+    const mediaType = post.mediaType ?? "none";
+    const postId = getPostId(post.id);
 
-    if (match) {
-      const localImage = `/images/linkedin/${match[1]}.webp`;
+    const hasImage =
+      originalImages.length > 0 ||
+      mediaType === "image" ||
+      mediaType === "multiImage";
 
-      images.unshift(localImage);
-    }
-  }
+    const localImage = postId && hasImage
+      ? `${LOCAL_IMAGE_PATH}${postId}.webp`
+      : null;
+
+    // Local image is preferred.
+    // LinkedIn images remain available as fallback.
+    // Preserve multi-image galleries when no local image exists.
+    const images = localImage
+      ? [localImage]
+      : originalImages;
 
     return {
       id: post.id ?? null,
+
       text: formatLinkedInText(rawText),
 
       date: formatDate(
@@ -120,10 +143,36 @@
 
       images,
 
+      fallbackImages: localImage
+        ? originalImages
+        : [],
+
       videoUrl: safeUrl(post.videoUrl),
 
-      mediaType: post.mediaType ?? "none"
+      mediaType
     };
+  }
+
+  function removeFailedMedia(image) {
+    const gallery = image.closest(
+      ".linkedin-card__gallery"
+    );
+
+    const article = image.closest(".linkedin-card");
+
+    if (gallery) {
+      gallery.remove();
+    } else {
+      image.remove();
+    }
+
+    if (article && !article.querySelector(
+      ".linkedin-card__gallery, video"
+    )) {
+      article.classList.add(
+        "linkedin-card--text-only"
+      );
+    }
   }
 
   function createImage(url, fallbackUrl = null) {
@@ -134,18 +183,17 @@
     image.loading = "lazy";
     image.decoding = "async";
 
-    image.onerror = () => {
-      if (fallbackUrl && image.src !== fallbackUrl) {
-        image.onerror = () => {
-          image.onerror = null;
-          image.style.display = "none";
-        };
+    let fallbackUsed = false;
 
+    image.onerror = () => {
+      if (fallbackUrl && !fallbackUsed) {
+        fallbackUsed = true;
         image.src = fallbackUrl;
-      } else {
-        image.onerror = null;
-        image.style.display = "none";
+        return;
       }
+
+      image.onerror = null;
+      removeFailedMedia(image);
     };
 
     image.src = url;
@@ -153,30 +201,41 @@
     return image;
   }
 
-  function createGallery(images) {
+  function createGallery(images, fallbackImages = []) {
     const gallery = document.createElement("div");
     gallery.className = "linkedin-card__gallery";
 
     let index = 0;
 
-    const image = createImage(images[0], images[1] ?? null);
+    const image = createImage(
+      images[0],
+      fallbackImages[0] ?? null
+    );
+
     gallery.appendChild(image);
 
     if (images.length > 1) {
       const controls = document.createElement("div");
-      controls.className = "linkedin-card__gallery-controls";
+      controls.className =
+        "linkedin-card__gallery-controls";
 
       const prev = document.createElement("button");
       prev.type = "button";
       prev.textContent = "←";
-      prev.setAttribute("aria-label", "Previous image");
+      prev.setAttribute(
+        "aria-label",
+        "Previous image"
+      );
 
       const count = document.createElement("span");
 
       const next = document.createElement("button");
       next.type = "button";
       next.textContent = "→";
-      next.setAttribute("aria-label", "Next image");
+      next.setAttribute(
+        "aria-label",
+        "Next image"
+      );
 
       function update() {
         image.src = images[index];
@@ -229,7 +288,10 @@
     }
 
     if (post.images.length) {
-      return createGallery(post.images);
+      return createGallery(
+        post.images,
+        post.fallbackImages
+      );
     }
 
     return null;
@@ -239,16 +301,16 @@
     const article = document.createElement("article");
     article.className = "linkedin-card";
 
-    // Media inside the same card
     const media = createMedia(post);
 
     if (media) {
       article.appendChild(media);
     } else {
-      article.classList.add("linkedin-card--text-only");
+      article.classList.add(
+        "linkedin-card--text-only"
+      );
     }
 
-    // Post content
     const body = document.createElement("div");
     body.className = "linkedin-card__body";
 
@@ -268,7 +330,6 @@
 
     body.appendChild(content);
 
-    // LinkedIn link
     const link = document.createElement("a");
 
     link.className = "linkedin-card__link";
@@ -286,7 +347,10 @@
   function renderPosts() {
     grid.replaceChildren();
 
-    const totalPages = Math.ceil(posts.length / PAGE_SIZE);
+    const totalPages = Math.ceil(
+      posts.length / PAGE_SIZE
+    );
+
     const start = currentPage * PAGE_SIZE;
 
     posts
@@ -341,7 +405,6 @@
       if (!posts.length) {
         status.textContent =
           "No LinkedIn updates available at the moment.";
-
         return;
       }
 
@@ -360,7 +423,6 @@
     }
   }
 
-  // Previous page
   previous.addEventListener("click", () => {
     if (currentPage > 0) {
       currentPage--;
@@ -368,7 +430,6 @@
     }
   });
 
-  // Next page
   next.addEventListener("click", () => {
     if ((currentPage + 1) * PAGE_SIZE < posts.length) {
       currentPage++;
