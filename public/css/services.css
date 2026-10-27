@@ -1,4 +1,4 @@
-/* ErsSoft Services — page-scoped styling */
+﻿/* ErsSoft Services â€” page-scoped styling */
 .services-page .section {
   max-width: 1280px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
 .services-page .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
+  align-items: stretch;
   gap: 24px;
   margin-top: 30px;
 }
@@ -18,7 +18,7 @@
 .services-page .software-products-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
+  align-items: stretch;
   gap: 24px;
   margin-top: 24px;
 }
@@ -27,7 +27,7 @@
 .services-page .software-products-grid > .card {
   box-sizing: border-box;
   min-width: 0;
-  height: auto;
+  height: 100%;
   background: #12183a;
   border-radius: 16px;
   padding: 26px 22px;
@@ -96,3 +96,4 @@
   .services-page .cta { padding: 24px 18px; }
   .services-page .cta h2 { font-size: 26px; }
 }
+
