@@ -39,6 +39,35 @@ import CookieConsent from "../components/CookieConsent.astro";
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/footer.css">
 <link rel="stylesheet" href="/css/services.css">
+
+<style>
+  /* Scoped additions: existing service card layout and global CSS remain unchanged. */
+  .service-read-more {
+    margin-top: 18px;
+    margin-bottom: 0;
+  }
+  .service-read-more a {
+    display: inline-block;
+    font-size: 0.9em;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: #fff;
+  }
+  .service-read-more a:hover,
+  .service-read-more a:focus-visible { color: #a8c7ff; }
+  .software-products { margin-top: 16px; }
+  .software-products-intro { color: #c7cbe6; max-width: 800px; }
+  .software-products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+  }
+  @media (max-width: 700px) {
+    .software-products-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 
 <body>
@@ -57,8 +86,8 @@ import CookieConsent from "../components/CookieConsent.astro";
       <h3>ERP & JD Edwards</h3>
       <p>
         Specialist techno-functional consulting for Oracle JD Edwards EnterpriseOne, including manufacturing, procurement, sales, inventory, integration and business process improvement. We help businesses make better use of their existing ERP investments.
-        <a href="/insights/jde-techno-functional-expertise/">Read about JD Edwards techno-functional expertise</a>.
       </p>
+      <p class="service-read-more"><a href="/insights/jde-techno-functional-expertise/">Read about JD Edwards techno-functional expertise &rarr;</a></p>
     </div>
 
     <div class="card">
@@ -73,16 +102,16 @@ import CookieConsent from "../components/CookieConsent.astro";
       <h3>Data & BI</h3>
       <p>
         Power BI dashboards, operational reporting and analytics that help managers understand performance, identify risks and make informed decisions.
-        <a href="/insights/business-intelligence-better-decisions/">Read about business intelligence and better decisions</a>.
       </p>
+      <p class="service-read-more"><a href="/insights/business-intelligence-better-decisions/">Read about business intelligence and better decisions &rarr;</a></p>
     </div>
 
     <div class="card">
       <h3>System Integration</h3>
       <p>
         ERP integrations with manufacturing, finance and external systems, with a focus on data consistency, operational value and reducing unnecessary manual work.
-        <a href="/insights/does-your-company-really-need-another-software-system/">Read our guide to evaluating additional software</a>.
       </p>
+      <p class="service-read-more"><a href="/insights/does-your-company-really-need-another-software-system/">Read our guide to evaluating additional software &rarr;</a></p>
     </div>
 
     <div class="card">
@@ -99,6 +128,30 @@ import CookieConsent from "../components/CookieConsent.astro";
         Bespoke applications, extensions and automation built to support your ERP
         and operational systems when standard software is not enough.
       </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section software-products" aria-labelledby="software-products-heading">
+  <h2 id="software-products-heading">Our Software Products</h2>
+  <p class="software-products-intro">
+    Alongside our consulting services, ERSSOFT develops practical digital tools to support bookings, business content and day-to-day operations.
+  </p>
+  <div class="software-products-grid">
+    <div class="card">
+      <h3>ERSSOFT Booking</h3>
+      <p>
+        An online reservation and table management platform for restaurants, with an embeddable booking widget, availability management and operational reporting.
+      </p>
+      <p class="service-read-more"><a href="https://portal.erssoft.co.uk/">Explore the Client Portal &rarr;</a></p>
+    </div>
+    <div class="card">
+      <h3>ERSSOFT Content Management</h3>
+      <p>
+        A content management platform for businesses to organise website information, menus, images and social media content from a central workspace.
+      </p>
+      <p class="service-read-more"><a href="/contact/">Enquire about Content Management &rarr;</a></p>
     </div>
   </div>
 </section>
