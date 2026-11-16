@@ -1,0 +1,111 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+const pageUrl = "https://www.erssoft.co.uk/a-better-world/";
+const socialImage = "https://www.erssoft.co.uk/images/green/green-hero.webp";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <GoogleAnalytics />
+  <title>A Better World | Our Vision | ErsSoft Limited</title>
+  <meta name="description" content="Explore ErsSoft Limited’s vision for a better world through ERP consulting, manufacturing systems expertise, practical software and smarter use of resources." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={pageUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ErsSoft Limited" />
+  <meta property="og:title" content="A Better World | ErsSoft Limited" />
+  <meta property="og:description" content="Better technology for better business and a better world." />
+  <meta property="og:url" content={pageUrl} />
+  <meta property="og:image" content={socialImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A Better World | ErsSoft Limited" />
+  <meta name="twitter:description" content="Better technology for better business and a better world." />
+  <meta name="twitter:image" content={socialImage} />
+  <meta name="theme-color" content="#0b1020" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/css/common.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/a-better-world.css" />
+</head>
+<body>
+  <Header />
+  <main class="green-page">
+    <section class="green-hero" aria-labelledby="green-title">
+      <div class="green-hero__image" aria-hidden="true"></div>
+      <div class="green-container green-hero__inner">
+        <div class="green-hero__copy">
+          <p class="green-kicker green-kicker--hero">Our Vision</p>
+          <h1 id="green-title">A Better <em>World</em></h1>
+          <p>Better technology for better business and a better world.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="green-vision green-section" aria-labelledby="green-vision-title">
+      <div class="green-container green-vision__layout">
+        <div class="green-vision__copy">
+          <h2 id="green-vision-title">Our Vision</h2>
+          <p>At ErsSoft Limited, we believe technology can help build a better world.</p>
+          <p>Through ERP consulting, manufacturing systems support, data analytics and software development, we help businesses improve processes and make informed decisions.</p>
+        </div>
+        <div class="green-vision__steps" aria-label="Our vision: better technology, better business, a better world">
+          <div class="green-step"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 5h8l1.4 5.2 4 1.7 4.6-2.6 5.6 5.7-2.6 4.6 1.7 4L48 25v7l-5.3 1.4-1.7 4 2.6 4.6-5.6 5.6-4.6-2.6-4 1.7L28 52h-8l-1.4-5.3-4-1.7-4.6 2.6-5.6-5.6 2.6-4.6-1.7-4L0 32v-7l5.3-1.4 1.7-4-2.6-4.6 5.6-5.7 4.6 2.6 4-1.7z" transform="translate(4 4) scale(.83)"/><circle cx="24" cy="24" r="7"/></svg><strong>Better<br/>Technology</strong></div>
+          <span class="green-step-arrow" aria-hidden="true">→</span>
+          <div class="green-step"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40h36M10 35V24h8v11M22 35V17h8v18M34 35V10h8v25M7 17l12-8 9 5L41 3M32 3h9v9"/></svg><strong>Better<br/>Business</strong></div>
+          <span class="green-step-arrow" aria-hidden="true">→</span>
+          <div class="green-step"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M41 6C19 6 7 14 7 29c0 8 6 13 14 13 16 0 23-16 20-36ZM7 42c8-15 19-23 31-28"/></svg><strong>A Better<br/>World</strong></div>
+        </div>
+        <figure class="green-vision__identity">
+          <img src="/images/green/a-better-world.webp" alt="ERSSOFT A Better World vision emblem showing a tree, Earth, river and green leaf" width="1536" height="1024" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="green-help green-section" aria-labelledby="green-help-title">
+      <div class="green-container">
+        <h2 id="green-help-title">How Technology Can Help</h2>
+        <div class="green-cards">
+          <article class="green-card"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M42 7C18 6 6 16 6 30c0 7 5 12 12 12 15 0 23-14 24-35ZM7 42c9-14 18-22 31-27"/></svg><h3>Use Resources Better</h3><p>Plan materials, stock and production more efficiently and help reduce waste.</p></article>
+          <article class="green-card"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="13" r="7"/><circle cx="8" cy="19" r="5"/><circle cx="40" cy="19" r="5"/><path d="M11 41v-6c0-8 5-13 13-13s13 5 13 13v6H11ZM1 40v-8c0-5 3-8 8-8M47 40v-8c0-5-3-8-8-8"/></svg><h3>Support People</h3><p>Give teams clear information to help them work safely, efficiently and with confidence.</p></article>
+          <article class="green-card"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="19"/><path d="M24 5v38M5 24h38M10 13c9 5 19 5 28 0M10 35c9-5 19-5 28 0"/></svg><h3>Plan for the Future</h3><p>Clear data and better planning can help businesses reduce unnecessary waste and prepare for change.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="green-practice green-section" aria-labelledby="green-practice-title">
+      <div class="green-container green-practice__layout">
+        <img src="/images/green/green-energy.webp" alt="Wind turbines and solar panels in green hills at sunset" width="492" height="292" loading="lazy" decoding="async" />
+        <div class="green-practice__copy">
+          <h2 id="green-practice-title">Technology in Practice</h2>
+          <p>We provide consulting and support for existing ERP and manufacturing systems, alongside data analytics and custom software development. We help businesses:</p>
+          <ul>
+            <li>Use existing ERP systems more effectively</li>
+            <li>Improve production planning and supply chain processes</li>
+            <li>Plan resources carefully and identify avoidable waste</li>
+            <li>Make informed decisions using reliable business data</li>
+          </ul>
+          <a class="green-text-link" href="/services/">Explore our services <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="green-closing" aria-labelledby="green-closing-title">
+      <div class="green-container green-closing__content">
+        <h2 id="green-closing-title">People, Technology and Nature<br />Can Work Together.</h2>
+        <p>Better Technology. Better Business. A Better World.</p>
+        <a class="green-button" href="/services/">Explore Our Services <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <CookieConsent />
+</body>
+</html>
