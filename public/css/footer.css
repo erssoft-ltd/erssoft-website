@@ -54,3 +54,7 @@
     margin-right: -3px !important;
   }
 }
+/* UK map visibility in dark mode */
+html:not([data-theme="light"]) .site-footer__map img {
+  filter: brightness(2.2);
+}

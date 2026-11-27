@@ -80,3 +80,17 @@
   html[data-theme="light"] .site-header__contact-section { border-bottom-color:rgba(20,40,65,.24); }
   html[data-theme="light"] .site-header__contact-section h2 { color:#9b6a20; }
 }
+
+/* Mobile company name separator */
+@media (max-width: 900px) {
+  .site-header__mobile-contact .site-header__company-name {
+    display: block;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,.20);
+  }
+
+  html[data-theme="light"] .site-header__mobile-contact .site-header__company-name {
+    border-bottom-color: rgba(0,0,0,.20);
+  }
+}
