@@ -1,0 +1,14 @@
+/* Corporate pages only */
+.corp { --corp-card:#12183a; --corp-copy:#c7cbe6; --corp-ink:#fff; --corp-border:#526b76; padding-block:24px 48px; color:var(--corp-ink); }
+html[data-theme="light"] .corp { --corp-card:#f3efe6; --corp-copy:#34495b; --corp-ink:#193b59; --corp-border:#b9c3c7; }
+.corp h1 {font-size:clamp(28px,4vw,42px);margin:20px 0 8px;}
+.corp h2 {font-size:20px;margin:0 0 12px;}
+.corp p {color:var(--corp-copy);line-height:1.7;}
+.corp-top,.corp-nav {display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.corp-nav {margin:24px 0;padding-block:12px;border-block:1px solid var(--corp-border);}
+.corp-nav a {padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid var(--corp-border);}
+.corp-nav a[aria-current="page"] {background:#32618b;color:white;}
+.corp-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px;margin:24px 0;}
+.corp-card {background:var(--corp-card);border-radius:16px;padding:24px;}
+.corp-card p:last-child {margin-bottom:0;}
+.corp-tag {font-weight:600;}

@@ -1,0 +1,32 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GoogleAnalytics from '../components/GoogleAnalytics.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+const {slug, title, description} = Astro.props;
+const site = 'https://www.erssoft.co.uk';
+const enUrl = `${site}/about/${slug}/`;
+const canonical = enUrl;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title} | ErsSoft Limited</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:title" content={`${title} | ErsSoft Limited`} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:image" content={`${site}/assets/logo.png`} />
+<link rel="icon" href="/assets/favicon-32x32.png" />
+<link rel="stylesheet" href="/css/common.css" />
+<link rel="stylesheet" href="/css/header.css" />
+<link rel="stylesheet" href="/css/footer.css" />
+<link rel="stylesheet" href="/css/corporate.css" />
+<GoogleAnalytics />
+</head>
+<body><Header /><div class="page-content"><slot /></div><Footer /><CookieConsent /></body>
+</html>

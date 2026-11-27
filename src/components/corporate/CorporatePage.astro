@@ -1,0 +1,19 @@
+---
+import CorporateLayout from '../../layouts/CorporateLayout.astro';
+import en from '../../data/corporate/en.json';
+const { slug } = Astro.props;
+const data = en;
+const page = data[slug as keyof typeof data];
+---
+<CorporateLayout {slug} title={page.title} description={page.intro[0] || page.items[0]?.text || page.title}>
+  <main class="corp site-container">
+    <nav class="corp-top" aria-label="Breadcrumb"><a href="/about/">About</a><span aria-hidden="true"> / </span><span>{page.title}</span></nav>
+    <h1>{page.title}</h1>
+    <p class="corp-tag">Creating Value Through Technology.</p>
+    <nav class="corp-nav" aria-label="Corporate pages">{Object.entries(data).map(([key,value]) => <a href={`/about/${key}/`} aria-current={key === slug ? 'page' : undefined}>{value.title}</a>)}</nav>
+    {page.intro.map(text => <p>{text}</p>)}
+    <div class="corp-grid">{page.items.map(item => <article class="corp-card"><h2>{item.title}</h2><p>{item.text}</p></article>)}</div>
+    {page.end.map(text => <p>{text}</p>)}
+    {slug === 'documents' && <div class="corp-grid">{Object.entries(data).slice(0,4).map(([key,value]) => <article class="corp-card"><h2><a href={`/about/${key}/`}>{value.title}</a></h2><p>{value.code} · Rev.00</p><p>PDF publication pending</p></article>)}</div>}
+  </main>
+</CorporateLayout>

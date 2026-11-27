@@ -1,0 +1,10 @@
+---
+import CorporateLayout from "../../layouts/CorporateLayout.astro";
+const docs = [
+ ["Vision & Mission", "ERS-COR-001_Vision-Mission_Rev00_EN.pdf"],
+ ["Core Values", "ERS-COR-002_Core-Values_Rev00_EN.pdf"],
+ ["Guiding Principles", "ERS-COR-003_Guiding-Principles_Rev00_EN.pdf"],
+ ["Quality & Service Management Policy", "ERS-POL-001_Quality-Service-Management_Rev00_EN.pdf"]
+];
+---
+<CorporateLayout title="Corporate Documents"><h1>Corporate Documents</h1><ul>{docs.map(([title,file])=><li><strong>{title}</strong> — <a href={`/documents/corporate/${file}`} target="_blank" rel="noopener noreferrer">View PDF</a> · <a href={`/documents/corporate/${file}`} download>Download</a></li>)}</ul></CorporateLayout>

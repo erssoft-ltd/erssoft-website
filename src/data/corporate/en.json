@@ -1,0 +1,191 @@
+{
+  "vision-mission": {
+    "title": "Vision & Mission",
+    "intro": [],
+    "items": [
+      {
+        "title": "Vision",
+        "text": "To become a globally trusted technology company that creates sustainable value through technology and improves the future of people and businesses."
+      },
+      {
+        "title": "Mission",
+        "text": "To co-create value with our customers and partners by designing, developing, delivering and continually improving reliable, secure and sustainable digital products and services."
+      }
+    ],
+    "end": [],
+    "code": "ERS-COR-001"
+  },
+  "values": {
+    "title": "Core Values",
+    "intro": [],
+    "items": [
+      {
+        "title": "Trust & Integrity",
+        "text": "We act with honesty, integrity and transparency in everything we do. We honour our commitments."
+      },
+      {
+        "title": "Value Creation",
+        "text": "We aim to create meaningful value for our customers, partners and stakeholders in everything we do."
+      },
+      {
+        "title": "Customer Focus",
+        "text": "We listen to our customers, understand their needs and develop solutions that support their success."
+      },
+      {
+        "title": "Quality & Reliability",
+        "text": "We make quality part of our culture and aim to deliver reliable and secure products and services."
+      },
+      {
+        "title": "Collaboration & Transparency",
+        "text": "We share knowledge, work together and support shared success through open communication."
+      },
+      {
+        "title": "Innovation",
+        "text": "We explore new ideas and technologies, embrace change and develop innovative solutions to real needs."
+      },
+      {
+        "title": "Simplicity",
+        "text": "We turn complex problems into simple, clear, accessible and practical solutions."
+      },
+      {
+        "title": "Continual Improvement",
+        "text": "We learn from experience, value feedback and continually improve our products, services and processes."
+      },
+      {
+        "title": "Responsibility & Sustainability",
+        "text": "We take responsibility for our decisions, respect people, society and the environment, and use technology ethically and responsibly."
+      }
+    ],
+    "end": [],
+    "code": "ERS-COR-002"
+  },
+  "guiding-principles": {
+    "title": "Guiding Principles",
+    "intro": [],
+    "items": [
+      {
+        "title": "Focus on Value",
+        "text": "We focus all our activities on creating value for our customers and stakeholders. We evaluate our decisions based on both technical requirements and business outcomes."
+      },
+      {
+        "title": "Start Where You Are",
+        "text": "Before starting new initiatives, we assess our existing processes, resources, technologies and experience. We retain and improve existing solutions that provide value."
+      },
+      {
+        "title": "Progress Iteratively with Feedback",
+        "text": "We divide our work into small, manageable and measurable stages. We use feedback at each stage to guide our progress and improvement."
+      },
+      {
+        "title": "Collaborate and Promote Visibility",
+        "text": "We communicate openly with our customers, partners and stakeholders. We promote knowledge sharing, collaboration and visibility across our processes."
+      },
+      {
+        "title": "Think and Work Holistically",
+        "text": "We consider our products, services and business processes as interconnected parts of a complete system rather than isolated activities."
+      },
+      {
+        "title": "Keep It Simple and Practical",
+        "text": "We avoid unnecessary complexity, bureaucracy and activities that do not create value. We design solutions that are clear, practical and sustainable."
+      },
+      {
+        "title": "Optimize and Automate",
+        "text": "We analyse and optimise our processes before automating them. We use appropriate technologies to improve efficiency, reduce the risk of errors and make effective use of our resources."
+      }
+    ],
+    "end": [],
+    "code": "ERS-COR-003"
+  },
+  "quality-policy": {
+    "title": "Quality & Service Management Policy",
+    "intro": [
+      "At ERSSOFT Limited, we are committed to creating sustainable value together with our customers and stakeholders, delivering reliable, secure and innovative products and services, and continually improving customer satisfaction.\nIn line with our vision, mission, core values and ITIL guiding principles, we are committed to:"
+    ],
+    "items": [
+      {
+        "title": "Customer Satisfaction",
+        "text": "Understanding and meeting our customers' needs, expectations and business objectives."
+      },
+      {
+        "title": "Value Co-creation",
+        "text": "Creating sustainable value through collaboration with our customers, partners and other stakeholders."
+      },
+      {
+        "title": "Product & Service Quality",
+        "text": "Managing our products and services throughout their lifecycles with a focus on quality, reliability, accessibility and usability."
+      },
+      {
+        "title": "Service Continuity",
+        "text": "Supporting service availability and continuity, minimising disruptions and restoring services safely as quickly as possible."
+      },
+      {
+        "title": "Information Security & Privacy",
+        "text": "Protecting the confidentiality, integrity and availability of information and managing personal data securely and responsibly."
+      },
+      {
+        "title": "Risk Management",
+        "text": "Identifying and assessing risks and opportunities and taking appropriate action."
+      },
+      {
+        "title": "Change Enablement",
+        "text": "Ensuring that changes are planned, controlled, tested and managed according to their risks."
+      },
+      {
+        "title": "Problem Management",
+        "text": "Identifying the root causes of problems, taking appropriate corrective action and preventing recurrence."
+      },
+      {
+        "title": "Compliance",
+        "text": "Meeting applicable legal, regulatory and contractual requirements."
+      },
+      {
+        "title": "Resource Management",
+        "text": "Using our resources effectively and efficiently, optimising our processes and automating appropriate activities."
+      },
+      {
+        "title": "Ethics & Sustainability",
+        "text": "Using technology and artificial intelligence ethically, securely and responsibly, while respecting people, society and the environment."
+      },
+      {
+        "title": "Continual Improvement",
+        "text": "Setting measurable objectives, regularly reviewing our performance, developing our capabilities and continually improving our management system."
+      }
+    ],
+    "end": [
+      "Our management is committed to implementing this policy, providing the necessary resources, communicating it to relevant stakeholders and reviewing it regularly.\nWe believe that quality is not only an objective but also an essential part of our corporate culture and the way we work."
+    ],
+    "code": "ERS-POL-001"
+  },
+  "governance": {
+    "title": "Corporate Governance",
+    "intro": [
+      "Our governance framework is designed to support responsible decision-making and sustainable value creation."
+    ],
+    "items": [
+      {
+        "title": "Evaluate",
+        "text": "Evaluate stakeholder needs, opportunities, risks, resources and performance."
+      },
+      {
+        "title": "Direct",
+        "text": "Direct strategy, policies, objectives and investment."
+      },
+      {
+        "title": "Monitor",
+        "text": "Monitor performance, compliance, quality and outcomes."
+      }
+    ],
+    "end": [
+      "This approach describes a management design, not evidence of implementation or certification."
+    ],
+    "code": "ERS-GOV-001"
+  },
+  "documents": {
+    "title": "Corporate Documents",
+    "intro": [
+      "Explore our corporate statements and policies. PDF files will be available after publication approval."
+    ],
+    "items": [],
+    "end": [],
+    "code": "ERS-GOV-005"
+  }
+}

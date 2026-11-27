@@ -1,0 +1,1 @@
+Extract into C:\Projects\erssoft-website-clean. Header and Footer are not included or changed. Run npm run build then npm run dev. Images are AI-generated illustrative assets, not actual ERSSOFT premises or projects. Local Astro build and browser testing remain required. Corporate PDFs are reused from the approved publication package.

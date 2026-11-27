@@ -3,24 +3,39 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+import corporate from "../data/corporate/en.json";
+const expertise = [
+  ["engineering", "Engineering & Production", "Manufacturing systems, fabrication workflows, quality and project execution.", "⚙"],
+  ["business", "Business Solutions", "ERP (JD Edwards), planning and business process management.", "▤"],
+  ["digital", "Digital Solutions", "Software development, integration and digitalisation.", "⌘"],
+  ["data", "Data & Intelligence", "Data analytics, reporting and decision support.", "▥"]
+];
+const steps = [["Understand", "The business, challenges and goals."], ["Design", "Practical, fit-for-purpose solutions."], ["Deliver", "Implement, integrate and create value."], ["Improve", "Measure, learn and continually improve."]];
+const docs = [
+ ["Vision & Mission", "ERS-COR-001_Vision-Mission_Rev00_EN.pdf"],
+ ["Core Values", "ERS-COR-002_Core-Values_Rev00_EN.pdf"],
+ ["Guiding Principles", "ERS-COR-003_Guiding-Principles_Rev00_EN.pdf"],
+ ["Quality & Service Management Policy", "ERS-POL-001_Quality-Service-Management_Rev00_EN.pdf"]
+];
+const valueIcons = ["◇", "✧", "◎", "✓", "↔", "✦", "≡", "↗", "♧"];
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
    <GoogleAnalytics />
-  <title>About ErsSoft Limited | ERP & Manufacturing Systems Experts</title>
-  <meta name="description" content="Learn about ErsSoft Limited, a UK-based ERP, JD Edwards and manufacturing systems consulting company delivering enterprise software and data-driven business solutions." />
+  <title>About ErsSoft Limited | Business, Engineering & Technology</title>
+  <meta name="description" content="Learn about ErsSoft Limited, a UK-based technology and consultancy company connecting business, engineering and digital expertise." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.erssoft.co.uk/about/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="ERSSOFT Limited" />
-  <meta property="og:title" content="About ErsSoft Limited | ERP & Manufacturing Systems Experts" />
-  <meta property="og:description" content="Learn about ErsSoft Limited, a UK-based ERP, JD Edwards and manufacturing systems consulting company delivering enterprise software and data-driven business solutions." />
+  <meta property="og:title" content="About ErsSoft Limited | Business, Engineering & Technology" />
+  <meta property="og:description" content="Learn about ErsSoft Limited, a UK-based technology and consultancy company connecting business, engineering and digital expertise." />
   <meta property="og:url" content="https://www.erssoft.co.uk/about/" />
   <meta property="og:image" content="https://www.erssoft.co.uk/assets/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="About ErsSoft Limited | ERP & Manufacturing Systems Experts" />
-  <meta name="twitter:description" content="Learn about ErsSoft Limited, a UK-based ERP, JD Edwards and manufacturing systems consulting company delivering enterprise software and data-driven business solutions." />
+  <meta name="twitter:title" content="About ErsSoft Limited | Business, Engineering & Technology" />
+  <meta name="twitter:description" content="Learn about ErsSoft Limited, a UK-based technology and consultancy company connecting business, engineering and digital expertise." />
   <meta name="twitter:image" content="https://www.erssoft.co.uk/assets/logo.png" />
 <meta charset="UTF-8">
 
@@ -46,80 +61,16 @@ import CookieConsent from "../components/CookieConsent.astro";
 <body>
 
 <Header />
-<div class="page-content">
-
-<section class="section">
-  <h1>About ErsSoft Limited</h1>
-  <p>
-    ErsSoft Limited is a UK-based ERP and IT consulting company specializing in manufacturing systems,
-    enterprise software and data-driven business solutions. We help organizations transform complex
-    operations into efficient, transparent and scalable digital environments.
-  </p>
-
-  <h2>Who We Are</h2>
-  <p>
-    The ErsSoft team brings more than 20 years of hands-on experience delivering ERP, manufacturing
-    and business intelligence solutions for industrial, engineering, logistics and enterprise organizations.
-    We combine deep technical expertise with real-world operational knowledge to create systems that truly
-    support business processes.
-  </p>
-  <p>
-    From JD Edwards and Oracle ERP platforms to Power BI reporting and custom-built software,
-    ErsSoft Limited delivers practical, reliable and future-proof solutions tailored to each client’s needs.
-  </p>
-
-  <h2>Our Leadership & Team</h2>
-  <p>
-    ErsSoft Limited is led by an experienced ERP and manufacturing systems consulting team with a strong
-    background in enterprise IT, production systems and business intelligence. Our leadership focuses on
-    delivering measurable business value, operational efficiency and long-term technology strategies
-    for our clients.
-  </p>
-
-  <h2>Our Approach</h2>
-  <p>
-    We believe that technology should serve the business — not the other way around. That is why we work
-    closely with our clients to understand their processes, challenges and goals before designing and
-    implementing solutions.
-  </p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Business-Driven Design</h3>
-      <p>
-        Every system we build is aligned with real operational workflows,
-        not just technical specifications.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Enterprise Reliability</h3>
-      <p>
-        Our solutions are designed for stability, scalability and long-term maintainability.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Long-Term Partnership</h3>
-      <p>
-        We work as a trusted technology partner, supporting our clients as
-        their businesses grow and evolve.
-      </p>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top: 40px;">
-    <h2 style="margin-top: 0;">A Better World</h2>
-    <p>
-      At ErsSoft Limited, we believe better technology and smarter business decisions
-      can help build a better world.
-    </p>
-    <a href="/a-better-world/">Discover Our Vision &rarr;</a>
-  </div>
-</section>
-
-</div>
+<main class="ers-about">
+<section class="ea-hero"><div class="ea-wrap"><span class="ea-kicker">About ErsSoft Limited</span><h1>Creating Value<br/>Through <em>Technology.</em></h1><p>Connecting business, engineering and technology to deliver practical and sustainable value.</p></div></section>
+<section class="ea-wrap ea-section ea-intro"><div><span class="ea-kicker">Who we are</span><h2>Knowledge, experience<br/>and technology.</h2></div><div><p>We are a UK-based technology and consultancy company that brings together business experience, engineering knowledge and digital expertise.</p><p>Our focus is to understand real business needs and turn them into practical, reliable and valuable solutions.</p></div></section>
+<section class="ea-direction"><img src="/assets/about/vision.webp" alt="Tower Bridge and the London skyline" loading="lazy"/><div class="ea-vision"><h2 class="ea-direction-title"><span class="ea-symbol" aria-hidden="true">◎</span>Our Vision</h2><p>{corporate["vision-mission"].items[0].text}</p></div><div class="ea-mission"><h2 class="ea-direction-title"><span class="ea-symbol" aria-hidden="true">↗</span>Our Mission</h2><p>{corporate["vision-mission"].items[1].text}</p></div></section>
+<section class="ea-wrap ea-section"><span class="ea-kicker">What we do</span><div class="ea-heading"><h2>Our Areas of Expertise</h2><a href="/services/">Explore Our Services →</a></div><div class="ea-expertise">{expertise.map(([image,title,description,symbol]) => <article><img src={`/assets/about/${image}.webp`} alt="" loading="lazy"/><span class="ea-tile-icon" aria-hidden="true">{symbol}</span><h3>{title}</h3><p>{description}</p></article>)}</div></section>
+<section class="ea-values"><div class="ea-wrap ea-section ea-values-inner"><div><span class="ea-kicker">Our Core Values</span><h2>What defines us.</h2><a href="/about/values/">Explore our values →</a></div><div class="ea-value-grid">{corporate.values.items.map((item,i)=><a href="/about/values/" title={item.text}><span aria-hidden="true">{valueIcons[i]}</span><strong>{item.title}</strong></a>)}</div></div></section>
+<section class="ea-wrap ea-section ea-work"><div><span class="ea-kicker">How we work</span><h2>From understanding<br/>to lasting value.</h2><a href="/about/guiding-principles/">Our guiding principles →</a></div><ol>{steps.map(([title,description],i)=><li><span aria-hidden="true">{["⌕","◇","⚙","↗"][i]}</span><h3>{title}</h3><p>{description}</p></li>)}</ol></section>
+<section class="ea-commitments"><article><h2>Quality &amp; Service Management</h2><p>A commitment to quality, reliability and continual improvement.</p><a href="/about/quality-policy/">Read our Policy →</a></article><article><h2>Trust &amp; Governance</h2><p>Doing business responsibly with integrity, accountability and transparency.</p><a href="/about/governance/">Our Approach →</a></article><article><h2>A Better World</h2><p>Better technology and smarter business decisions can help build a better world.</p><a href="/a-better-world/">Explore →</a></article></section>
+<section class="ea-wrap ea-section"><span class="ea-kicker">Corporate Documents</span><h2>Our commitments in writing.</h2><div class="ea-docs">{docs.map(([title,file])=><article><span class="ea-doc-icon" aria-hidden="true">▤</span><h3>{title}</h3><div><a href={`/documents/corporate/${file}`} target="_blank" rel="noopener noreferrer" aria-label={`View ${title} PDF`}>View PDF</a><a href={`/documents/corporate/${file}`} download aria-label={`Download ${title} PDF`}>Download ↓</a></div></article>)}</div></section>
+</main>
 <Footer />
 <CookieConsent />
-</body>
-</html>
+</body></html>
